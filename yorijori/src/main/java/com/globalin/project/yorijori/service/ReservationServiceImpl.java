@@ -21,7 +21,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void reservationDelete(UserResponse user, Long vno) {
+    public void reservationDelete(UserResponse user, Long vno) {// 작업함
 
     }
 
