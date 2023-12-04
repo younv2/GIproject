@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @GetMapping()
+    @GetMapping("/")
     public String reservationPage() {
         return "user/reservation";
     }
     
     // 예약 성공
 
-    @GetMapping()
+    @GetMapping("/details")
     public String reservationDetailsPage() {
         return "user/reservationDetails";
     }
