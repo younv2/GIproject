@@ -22,5 +22,4 @@ public interface ReservationService {
     ReservationResponse reservationDetails(RestaurantDetailResponse res,
                                            UserResponse user);
 
-
 }
