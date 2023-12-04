@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerPage() {
-        return "user/register";
+        return "restaurant/register";
     }
 
     @PostMapping("/register")
