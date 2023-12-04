@@ -17,21 +17,21 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-    @GetMapping()
+    @GetMapping("/details")
     public String details() {
         return "restaurant/details";
     }
     
     // 수정
 
-    @GetMapping()
+    @GetMapping("/register")
     public String registerPage() {
         return "restaurant/register";
     }
     
     // 등록
 
-    @GetMapping()
+    @GetMapping("/modify")
     public String modifyPage() {
         return "restaurant/modify";
     }
