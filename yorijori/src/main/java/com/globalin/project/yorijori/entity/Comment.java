@@ -2,10 +2,7 @@ package com.globalin.project.yorijori.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +14,13 @@ public class Comment {
     private Long cno;
     private Long mno;
     private Long rno;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Restaurant restaurant;
+
     private String review;
     private int rate;
     private LocalDateTime created_at;
