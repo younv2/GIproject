@@ -21,7 +21,7 @@
 <body>
     <header>
         <!--로고-->
-        <img src="img/logo.png" alt="asd" width="260px">
+        <a href=""> <img src="img/logo.png" alt="asd" width="260px"></a>
         <ul>
             <li><a href="/user/sign">로그인</a></li>
             <li><a href="#" onclick="javascript:page_move('/user/logout');">로그아웃</a></li>
@@ -30,16 +30,21 @@
 
     </header>
     <div class = "main_container">
-        <h2>index page</h2>
         <!--검색-->
-        <input type="text" name="search" class="search">
+        <input type="text" name="search" class="search"><br>
         <!--카테고리-->
-        <button type="submit" name="category" value="cn">중식</button>
-        <button type="submit" name="category" value="jp">일식</button>
-        <button type="submit" name="category" value="eu">양식</button>
+        <div class="restaurant_category">
+            <button type="submit" name="category" value="cn">중식</button>
+            <button type="submit" name="category" value="jp">일식</button>
+            <button type="submit" name="category" value="eu">양식</button>
+            <button type="submit" name="category" value="eu">양식</button>
+            <button type="submit" name="category" value="eu">양식</button>
+            <button type="submit" name="category" value="eu">양식</button>
+        </div>
     </div>
     <footer>
-        <p>3000000</p>
+        <hr>
+        <p>footer입니다</p>
     </footer>
 </body>
 </html>

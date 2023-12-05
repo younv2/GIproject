@@ -3,6 +3,7 @@ header > ul > li {
     margin: 0px;
 }
 header {
+    padding: 2%;
     display: flex;
 }
 header > ul {
@@ -13,14 +14,43 @@ a {
     color: gray;
 }
 .main_container > .search {
+    background-image: url("../img/search.png");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 10px center;
     background-color: #DDDDDD;
     border: none;
     padding: 10px;
     border-radius: 100px;
     padding-left: 40px;
-    width: max-content;
+    width: 80%;
+    margin : 100px auto 50px;
+    display : block;
 }
 .main_container > .search:focus {
     border: none;
     outline: none;
+}
+.main_container > .restaurant_category {
+    margin : 0 auto;
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    width: 84%;
+}
+.main_container > .restaurant_category > button
+{
+    width : 15vw;
+    margin : 1vw;
+    height: 20vh;
+    border: 0;
+    border-radius: 20px;
+    font-size : 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.main_container > .restaurant_category > button:hover
+{
+    cursor: pointer;
 }
