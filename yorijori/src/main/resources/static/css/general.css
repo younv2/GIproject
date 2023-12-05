@@ -1,0 +1,26 @@
+header > ul > li {
+    display: inline;
+    margin: 0px;
+}
+header {
+    display: flex;
+}
+header > ul {
+    margin-left: auto;
+}
+a {
+    text-decoration: none;
+    color: gray;
+}
+.main_container > .search {
+    background-color: #DDDDDD;
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+    padding-left: 40px;
+    width: max-content;
+}
+.main_container > .search:focus {
+    border: none;
+    outline: none;
+}
