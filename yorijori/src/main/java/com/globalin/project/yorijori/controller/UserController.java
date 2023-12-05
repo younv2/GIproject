@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/login")
-    public String loginPage() {
+    @GetMapping("/sign")
+    public String signPage() {
         return "user/sign";
     }
 
@@ -32,11 +32,6 @@ public class UserController {
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         return "redirect:";
-    }
-
-    @GetMapping("/register")
-    public String registerPage() {
-        return "restaurant/register";
     }
 
     @PostMapping("/register")
