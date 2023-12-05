@@ -25,13 +25,14 @@ public class UserController {
     public String login(LoginRequest request,
                         HttpSession session) {
         UserResponse user = userService.login(request);
-        session.setAttribute("username", user.getUsername());
-        return "redirect:";
+        session.setAttribute("username", "123");//임시로 "123"으로 변경 추후 작업 후 user.getUsername()로 바꿔주세요
+        return "redirect:/";
     }
 
     @PostMapping("/logout")
     public String logout(HttpSession session) {
-        return "redirect:";
+        session.invalidate();
+        return "redirect:/";
     }
 
     @PostMapping("/register")
