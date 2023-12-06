@@ -1,17 +1,18 @@
 package com.globalin.project.yorijori.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
