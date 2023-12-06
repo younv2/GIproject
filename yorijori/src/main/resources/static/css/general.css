@@ -40,9 +40,9 @@ a {
 }
 .main_container > .restaurant_category > button
 {
-    width : 15vw;
+    width : 18vw;
+    height: 18vw;
     margin : 1vw;
-    height: 20vh;
     border: 0;
     border-radius: 20px;
     font-size : 24px;
