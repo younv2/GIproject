@@ -17,7 +17,7 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rno;
     private String name;
-    private String buisness_number;
+    private String business_number;
     private String address;
     private String phone_number;
 

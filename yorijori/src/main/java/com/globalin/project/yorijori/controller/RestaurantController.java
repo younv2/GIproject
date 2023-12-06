@@ -24,18 +24,17 @@ public class RestaurantController {
     }
     
     // 수정
-
     @GetMapping("/register")
     public String registerPage() {
         return "restaurant/register";
     }
 
+    // 등록
     @PostMapping("/save")
-        public String save(){
+        public String restaurantSave(){
         return "restaurant/list";
     }
     
-    // 등록
 
     @GetMapping("/modify")
     public String modifyPage() {
