@@ -44,13 +44,17 @@ public class Restaurant {
 
     public static Restaurant toSaveEntity(RestaurantRegistrationRequest restaurantRegistrationRequest){
         Restaurant restaurantEntity = new Restaurant();
-        restaurantEntity.setRno(restaurantRegistrationRequest.getRno());
-        restaurantEntity.setName(restaurantRegistrationRequest.getBusiness_number());
-        restaurantEntity.setAddress(restaurantRegistrationRequest.getPhone_number());
+        restaurantEntity.setName(restaurantRegistrationRequest.getName());
+        restaurantEntity.setAddress(restaurantRegistrationRequest.getAddress());
         restaurantEntity.setCategory(restaurantRegistrationRequest.getCategory());
-        restaurantEntity.setDescription(restaurantRegistrationRequest.getThumbnail());
+        restaurantEntity.setDescription(restaurantRegistrationRequest.getDescription());
         restaurantEntity.setStart_time(restaurantRegistrationRequest.getStart_time());
         restaurantEntity.setEnd_time(restaurantRegistrationRequest.getEnd_time());
+        restaurantEntity.setBusiness_number(restaurantRegistrationRequest.getBusiness_number());
+        restaurantEntity.setThumbnail(restaurantRegistrationRequest.getThumbnail());
+        restaurantEntity.setPhone_number(restaurantRegistrationRequest.getPhone_number());
+        restaurantEntity.setDuplicate_reservation(restaurantRegistrationRequest.getDuplicate_reservation());
+
         return restaurantEntity;
     }
 

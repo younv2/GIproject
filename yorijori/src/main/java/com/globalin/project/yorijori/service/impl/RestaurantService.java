@@ -6,7 +6,9 @@ import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
+import com.globalin.project.yorijori.entity.User;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 
 public interface RestaurantService {
     //가게 등록
-    void restaurantRegistration(UserResponse user, RestaurantRegistrationRequest req);
+    void restaurantRegistration(User user, RestaurantRegistrationRequest req);
 
     //가게 상세페이지
     RestaurantDetailResponse restaurantDetail(Long rno);

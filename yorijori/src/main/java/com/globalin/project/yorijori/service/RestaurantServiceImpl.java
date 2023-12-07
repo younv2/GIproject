@@ -6,7 +6,9 @@ import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
+import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
+import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,13 @@ import java.util.List;
 public class RestaurantServiceImpl implements RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
+
+
     @Override
-    public void restaurantRegistration(UserResponse user, RestaurantRegistrationRequest req) {
+    public void restaurantRegistration(User user, RestaurantRegistrationRequest req) {
         Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
+
+        restaurantEntity.setUser(user);
         restaurantRepository.save(restaurantEntity);
     }
 
