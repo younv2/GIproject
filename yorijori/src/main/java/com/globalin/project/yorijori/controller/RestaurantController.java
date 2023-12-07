@@ -3,6 +3,7 @@ package com.globalin.project.yorijori.controller;
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
+import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/restaurant")
 public class RestaurantController {
     private final RestaurantService restaurantService;
-
+    private final UserService userService;
     @GetMapping("/list")
     public String restaurantListPage() {
         return "restaurant/list";
@@ -39,7 +40,8 @@ public class RestaurantController {
         public String restaurantSave(HttpSession session, @ModelAttribute RestaurantRegistrationRequest restaurantRegistrationRequest){
         System.out.println("restaurantRegistrationRequest =" + restaurantRegistrationRequest);
         System.out.println("user =" + session.getAttribute("username"));
-        restaurantService.restaurantRegistration(restaurantRegistrationRequest);
+        UserResponse ur = userService.info((String)session.getAttribute("username"));
+        restaurantService.restaurantRegistration(ur,restaurantRegistrationRequest);
         return "restaurant/list";
     }
 
