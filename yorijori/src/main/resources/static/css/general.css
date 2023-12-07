@@ -13,6 +13,14 @@ a {
     text-decoration: none;
     color: gray;
 }
+header {
+    padding: 0 10vw;
+    display: flex;
+    margin:  0 auto;
+}
+hr {
+    margin: 0 auto;
+}
 .main_container > .search {
     background-image: url("../img/search.png");
     background-repeat: no-repeat;

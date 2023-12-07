@@ -3,29 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>sign page</title>
+    <link rel="stylesheet" href="../css/general.css">
 </head>
+<script type="text/javascript">
+    function pushed_login() {
+        var login_form = document.getElementById("login_form"); 	
+        var join_form = document.getElementById("join_form");
+
+        login_form.style.display = 'block';
+        join_form.style.display = 'none';
+    }
+    function pushed_join() {
+        var login_form = document.getElementById("login_form"); 	
+        var join_form = document.getElementById("join_form");
+
+        login_form.style.display = 'none';
+        join_form.style.display = 'block';
+    }
+</script>
 <body>
-    <h2>sign page</h2>
-    <ul>
-        <li>로그인</li>
-        <li>회원가입</li>
-    </ul>
-    <form action="login" method="post">
-        <h2>로그인</h2>
-        ID <input type="text" name="id"><br>
-        PW <input type="password" name="password">
-        <button type="submit">로그인</button>
-    </form>
-    <form action="register" method="post">
-        <h2>회원가입</h2>
-        아이디 <input type="text" name="id"><br>
-        비밀번호 <input type="password" name="password"><br>
-        비밀번호 확인 <input type="password" name="check_password"><br>
-        이름 <input type="text" name="name"><br>
-        이메일 <input type="text" name="email"><br>
-        휴대폰 번호 <input type="text" name="phone_number"><br>
-        닉네임 <input type="text" name="nickname"><br>
-        <button type="submit">회원가입</button>
-    </form>
+    <header>
+        <!--로고-->
+        <a href=""> <img src="../img/logo.png" alt="asd" width="260px"></a>
+
+    </header>
+    <hr>
+    <div class="body">
+        <ul class = "nav">
+            <li class="login" onclick="pushed_login()">로그인</li>
+            <li class="join"onclick="pushed_join()">회원가입</li>
+        </ul>
+        <form id = "login_form" action="login" method="post" style="display: block;">
+            ID <input type="text" name="id"><br>
+            PW <input type="password" name="password">
+            <button type="submit">로그인</button>
+        </form>
+        <form id = "join_form"action="register" method="post" style="display: none;">
+            아이디 <input type="text" name="id"><br>
+            비밀번호 <input type="password" name="password"><br>
+            비밀번호 확인 <input type="password" name="check_password"><br>
+            이름 <input type="text" name="name"><br>
+            이메일 <input type="text" name="email"><br>
+            휴대폰 번호 <input type="text" name="phone_number"><br>
+            닉네임 <input type="text" name="nickname"><br>
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
+    
 </body>
 </html>
