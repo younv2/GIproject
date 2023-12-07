@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/restaurant")
@@ -34,9 +36,10 @@ public class RestaurantController {
 
     // 등록
     @PostMapping("/save")
-        public String restaurantSave(@ModelAttribute RestaurantRegistrationRequest restaurantRegistrationRequest, UserResponse userResponse){
+        public String restaurantSave(HttpSession session, @ModelAttribute RestaurantRegistrationRequest restaurantRegistrationRequest){
         System.out.println("restaurantRegistrationRequest =" + restaurantRegistrationRequest);
-        restaurantService.restaurantRegistration(userResponse, restaurantRegistrationRequest);
+        System.out.println("user =" + session.getAttribute("username"));
+        restaurantService.restaurantRegistration(restaurantRegistrationRequest);
         return "restaurant/list";
     }
 

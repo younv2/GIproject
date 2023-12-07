@@ -1,5 +1,6 @@
 package com.globalin.project.yorijori.entity;
 
+import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,4 +41,17 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private List<Reservation> reservations;
+
+    public static Restaurant toSaveEntity(RestaurantRegistrationRequest restaurantRegistrationRequest){
+        Restaurant restaurantEntity = new Restaurant();
+        restaurantEntity.setRno(restaurantRegistrationRequest.getRno());
+        restaurantEntity.setName(restaurantRegistrationRequest.getBusiness_number());
+        restaurantEntity.setAddress(restaurantRegistrationRequest.getPhone_number());
+        restaurantEntity.setCategory(restaurantRegistrationRequest.getCategory());
+        restaurantEntity.setDescription(restaurantRegistrationRequest.getThumbnail());
+        restaurantEntity.setStart_time(restaurantRegistrationRequest.getStart_time());
+        restaurantEntity.setEnd_time(restaurantRegistrationRequest.getEnd_time());
+        return restaurantEntity;
+    }
+
 }

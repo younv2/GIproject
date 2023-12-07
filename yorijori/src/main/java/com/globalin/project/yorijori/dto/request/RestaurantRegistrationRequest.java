@@ -26,4 +26,5 @@ public class RestaurantRegistrationRequest {
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private String duplicate_reservation;
+    private Long user_mno;
 }

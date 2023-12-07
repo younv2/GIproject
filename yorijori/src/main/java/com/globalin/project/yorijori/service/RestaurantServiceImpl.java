@@ -5,6 +5,7 @@ import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Category;
+import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void restaurantRegistration(UserResponse user, RestaurantRegistrationRequest req) {
-
+        Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
+        restaurantRepository.save(restaurantEntity);
     }
 
     @Override
