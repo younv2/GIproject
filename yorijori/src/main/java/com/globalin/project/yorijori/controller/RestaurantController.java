@@ -1,7 +1,6 @@
 package com.globalin.project.yorijori.controller;
 
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
-import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
