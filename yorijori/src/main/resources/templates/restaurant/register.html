@@ -77,18 +77,21 @@
             'thumbnail' : thumbnail
         }
         $.ajax({
-            type: 'post',
-            url: '/restaurant/save',
+            url: "/restaurant/save",
+            type: "POST",
             data: JSON.stringify(data),
-            contentType : 'application/json; charset=utf-8',
-            // beforeSend: function(xhr){
+            contentType: "application/json; charset=UTF-8",
+            // beforeSend : function(xhr){
             //     xhr.setRequestHeader(header, token);
-            // }
-        }).done(function(){
-            window.location.reload();
-        }).fail(function(error){
-            alert(JSON.stringify(error));
-        })
+            // },
+            success: function(data){
+                alert("등록되었습니다.");
+                $(location).attr('href','/restaurant/list');
+            },
+            error: function(){
+                alert("err");
+            }
+        });
     });
 </script>
 
