@@ -8,24 +8,23 @@ import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
-import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
+    @Autowired
     private final RestaurantRepository restaurantRepository;
-
-
 
     @Override
     public void restaurantRegistration(User user, RestaurantRegistrationRequest req) {
         Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
-
         restaurantEntity.setUser(user);
         restaurantRepository.save(restaurantEntity);
     }
@@ -35,14 +34,25 @@ public class RestaurantServiceImpl implements RestaurantService {
         return null;
     }
 
-    @Override
-    public List<RestaurantListResponse> showRestaurantList(Category category) {
-        return null;
+    public List<RestaurantListResponse> findAll() {
+        List<Restaurant> restaurantEntityList = restaurantRepository.findAll();
+        List<RestaurantListResponse> RestaurantDTOList = new ArrayList<>();
+        for (Restaurant restaurantEntity : restaurantEntityList) {
+            RestaurantDTOList.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
+        }
+        return RestaurantDTOList;
     }
 
     @Override
-    public List<RestaurantListResponse> showRestaurantList(String name) {
-        return null;
+    public List<Restaurant> showRestaurantList(Category category) {
+        List<Restaurant> restaurantList = restaurantRepository.findAll();
+        return restaurantRepository.findByCategoryOrderByRnoDesc(category);
+    }
+
+    @Override
+    public List<Restaurant> showRestaurantList(String name) {
+        List<Restaurant> restaurantList = restaurantRepository.findAll();
+        return restaurantRepository.findByNameContainingOrderByRnoDesc(name);
     }
 
     @Override

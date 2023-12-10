@@ -1,15 +1,22 @@
 package com.globalin.project.yorijori.controller;
 
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
+import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
+import com.globalin.project.yorijori.entity.Category;
+import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
+import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,10 +25,27 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
     private final UserService userService;
     private final UserRepository userRepository;
-    @GetMapping("/list")
-    public String restaurantListPage() {
+    private final RestaurantRepository restaurantRepository;
+
+    /*
+    @GetMapping("/list/category")
+    public List<RestaurantListResponse> restaurantListPage(Category category) {
+        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.();
+        model.addAttribute("restaurantList", RestaurantListResponseList);
+        System.out.println("gggg" + model.addAttribute("restaurantList", RestaurantListResponseList));
         return "restaurant/list";
     }
+    */
+
+
+    @GetMapping("/list")
+    public String findAll(Model model){
+        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.findAll();
+        model.addAttribute("restaurantList", RestaurantListResponseList);
+        System.out.println("gggg" + model.addAttribute("restaurantList", RestaurantListResponseList));
+        return "restaurant/list";
+    }
+
 
     @GetMapping("/details")
     public String details() {
