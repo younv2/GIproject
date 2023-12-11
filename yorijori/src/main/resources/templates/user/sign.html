@@ -54,7 +54,8 @@
                               <div class="form-group">
                                 <input type="text" name="join_username" class="form-style" placeholder="Your ID" id="join_username" autocomplete="off">
                                 <i class="input-icon uil uil-user"></i>
-                              </div>  
+                              </div>
+                                <button type="button" id="id_check" onclick="sameCheck()">중복확인</button>
                               <div class="form-group mt-2">
                                 <input type="password" name="join_pass" class="form-style" placeholder="Your Password" id="join_pass" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
@@ -166,6 +167,27 @@
           }
       });
   });
+    let submitCheck = false;
+    $("#id_check").click(function() {
+        let username = $('#join_username').val();
+
+        $.ajax({
+            type: "get",
+            url: "/user/checkid?username=" + username
+        }).done((res) => {
+            //console.log(res);
+            if (res.data == true) {
+                alert(res.msg);
+                submitCheck = true; // 중복 체크 완료
+            } else {
+                alert(res.msg);
+                submitCheck = false;
+            }
+
+        }).fail((err) => {
+            console.log('상태코드 200밖에 없어서 실행 안됨')
+        });
+    });
 </script>
 
 

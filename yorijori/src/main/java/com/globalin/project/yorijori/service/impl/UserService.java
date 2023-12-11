@@ -14,6 +14,8 @@ public interface UserService {
 
     void signUp(SignUpRequest signUpRequest);
 
+    boolean checkId(String id);
+
     void userModify(UserModifyRequest userModifyRequest);
 
     void userDelete(LoginRequest loginRequest);
