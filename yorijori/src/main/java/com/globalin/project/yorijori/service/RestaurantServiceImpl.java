@@ -10,7 +10,6 @@ import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
-    @Autowired
+
     private final RestaurantRepository restaurantRepository;
 
     @Override
@@ -69,7 +68,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         for (Restaurant restaurantEntity : restaurantEntityList) {
             RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
-            System.out.println(RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity)));
         }
         return RestaurantDTO;
     }
