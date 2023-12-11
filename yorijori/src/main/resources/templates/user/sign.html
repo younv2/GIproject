@@ -4,51 +4,154 @@
     <meta charset="UTF-8">
     <title>sign page</title>
     <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/sign.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/sign.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<script type="text/javascript">
-    function pushed_login() {
-        var login_form = document.getElementById("login_form"); 	
-        var join_form = document.getElementById("join_form");
-
-        login_form.style.display = 'block';
-        join_form.style.display = 'none';
-    }
-    function pushed_join() {
-        var login_form = document.getElementById("login_form"); 	
-        var join_form = document.getElementById("join_form");
-
-        login_form.style.display = 'none';
-        join_form.style.display = 'block';
-    }
-</script>
 <body>
     <header>
         <!--로고-->
         <a href=""> <img src="../img/logo.png" alt="asd" width="260px"></a>
-
+      
     </header>
     <hr>
     <div class="body">
-        <ul class = "nav">
-            <li class="login" onclick="pushed_login()">로그인</li>
-            <li class="join"onclick="pushed_join()">회원가입</li>
-        </ul>
-        <form id = "login_form" action="login" method="post" style="display: block;">
-            ID <input type="text" name="id"><br>
-            PW <input type="password" name="password">
-            <button type="submit">로그인</button>
-        </form>
-        <form id = "join_form"action="register" method="post" style="display: none;">
-            아이디 <input type="text" name="id"><br>
-            비밀번호 <input type="password" name="password"><br>
-            비밀번호 확인 <input type="password" name="check_password"><br>
-            이름 <input type="text" name="name"><br>
-            이메일 <input type="text" name="email"><br>
-            휴대폰 번호 <input type="text" name="phone_number"><br>
-            닉네임 <input type="text" name="nickname"><br>
-            <button type="submit">회원가입</button>
-        </form>
+          <div class="section">
+            <div class="container">
+              <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                  <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                          <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                          <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                      <div class="card-3d-wrapper">
+                        <div class="card-front">
+                          <div class="center-wrap">
+                            <div class="section text-center">
+                              <h4 class="mb-4 pb-3">Log In</h4>
+                              <div class="form-group">
+                                <input type="text" name="login_id" class="form-style" placeholder="Your Email" id="login_id">
+                                <i class="input-icon uil uil-at"></i>
+                              </div>  
+                              <div class="form-group mt-2">
+                                <input type="password" name="login_pass" class="form-style" placeholder="Your Password" id="login_pass" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <a href="#" class="btn mt-4" id="login">submit</a>
+                                            <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+                                </div>
+                              </div>
+                            </div>
+                        <div class="card-back">
+                          <div class="center-wrap">
+                            <div class="section text-center">
+                              <h4 class="mb-4 pb-3">Sign Up</h4>
+                              <div class="form-group">
+                                <input type="text" name="join_username" class="form-style" placeholder="Your ID" id="join_username" autocomplete="off">
+                                <i class="input-icon uil uil-user"></i>
+                              </div>  
+                              <div class="form-group mt-2">
+                                <input type="password" name="join_pass" class="form-style" placeholder="Your Password" id="join_pass" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <div class="form-group mt-2">
+                                <input type="password" name="join_checkpass" class="form-style" placeholder="Password check" id="join_checkpass" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <div class="form-group mt-2">
+                                <input type="text" name="join_name" class="form-style" placeholder="Your Name" id="join_name" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <div class="form-group mt-2">
+                                <input type="text" name="join_nickname" class="form-style" placeholder="Your Nickname" id="join_nickname" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <div class="form-group mt-2">
+                                <input type="email" name="join_email" class="form-style" placeholder="Your Email" id="join_email" autocomplete="off">
+                                <i class="input-icon uil uil-at"></i>
+                              </div>  
+                              <div class="form-group mt-2">
+                                <input type="text" name="join_phone" class="form-style" placeholder="Your PhoneNumber" id="join_phone" autocomplete="off">
+                                <i class="input-icon uil uil-lock-alt"></i>
+                              </div>
+                              <a href="#" class="btn mt-4" id="join">submit</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
     </div>
+    <footer>
+        <hr>
+        <p>footer입니다</p>
+    </footer>
     
 </body>
+<script>
+  $("#join").click(function () {
+
+      const username = $("#join_username").val();
+      const password = $("#join_pass").val();
+      const name = $("#join_name").val();
+      const nickname = $("#join_nickname").val();
+      const email = $("#join_email").val();
+      const phone_number = $("#join_phone").val();
+
+      const data = {
+          'username': username,
+          'password': password,
+          'name': name,
+          'nickname': nickname,
+          'email': email,
+          'phone_number': phone_number
+      }
+      $.ajax({
+          url: "/user/register",
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json; charset=UTF-8",
+          success: function(data){
+              alert("회원 가입되었습니다.");
+              $(location).attr('href','/');
+          },
+          error: function(){
+              alert("err");
+          }
+      });
+  });
+  $("#login").click(function () {
+
+      const id = $("#login_id").val();
+      const password = $("#login_pass").val();
+
+      const data = {
+          'username': id,
+          'password': password
+      }
+      $.ajax({
+          url: "/user/login",
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json; charset=UTF-8",
+          success: function(data){
+              $(location).attr('href','/');
+          },
+          error: function(){
+              alert("err");
+          }
+      });
+  });
+</script>
+
+
 </html>

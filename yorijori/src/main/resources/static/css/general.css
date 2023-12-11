@@ -1,3 +1,4 @@
+/*header*/
 header > ul > li {
     display: inline;
     margin: 0px;
@@ -5,22 +6,27 @@ header > ul > li {
 header {
     padding: 2%;
     display: flex;
+    margin:  0 auto;
 }
 header > ul {
     margin-left: auto;
 }
+/*footer*/
+
+/*general*/
 a {
     text-decoration: none;
     color: gray;
 }
-header {
-    padding: 0 10vw;
-    display: flex;
-    margin:  0 auto;
+hr{
+    background-color: #DDDDDD;
+    height: 1px;
+    border: 0;
 }
-hr {
-    margin: 0 auto;
+body {
+    margin: 0 10vw;
 }
+/*main*/
 .main_container > .search {
     background-image: url("../img/search.png");
     background-repeat: no-repeat;
@@ -48,8 +54,8 @@ hr {
 }
 .main_container > .restaurant_category > button
 {
-    width : 18vw;
-    height: 18vw;
+    width : 14vw;
+    height: 14vw;
     margin : 1vw;
     border: 0;
     border-radius: 20px;
