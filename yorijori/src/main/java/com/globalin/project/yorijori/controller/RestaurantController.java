@@ -28,9 +28,9 @@ public class RestaurantController {
 
 
     @GetMapping("/list/category")
-    public String restaurantListPage(Model model, @RequestParam  Category category) {
-        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.findByCategory(category);
-        model.addAttribute("restaurantList", RestaurantListResponseList);
+    public String restaurantListPage(Model model, @RequestParam Category category) {
+        List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
+        model.addAttribute("restaurantList", restaurantListResponse);
         return "restaurant/list";
     }
 
