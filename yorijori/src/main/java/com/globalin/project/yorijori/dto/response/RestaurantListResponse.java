@@ -18,9 +18,7 @@ public class RestaurantListResponse {
         RestaurantListResponse restaurantListResponse = new RestaurantListResponse();
         restaurantListResponse.setRno(restaurantEntity.getRno());
         restaurantListResponse.setName(restaurantEntity.getName());
-        restaurantListResponse.setCategory(restaurantListResponse.getCategory());
+        restaurantListResponse.setCategory(restaurantEntity.getCategory().name());
         return restaurantListResponse;
     }
-
-
 }
