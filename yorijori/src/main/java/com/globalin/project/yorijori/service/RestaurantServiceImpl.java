@@ -34,14 +34,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         return null;
     }
 
-    public List<RestaurantListResponse> findAll() {
-        List<Restaurant> restaurantEntityList = restaurantRepository.findAll();
-        List<RestaurantListResponse> RestaurantDTOList = new ArrayList<>();
-        for (Restaurant restaurantEntity : restaurantEntityList) {
-            RestaurantDTOList.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
-        }
-        return RestaurantDTOList;
-    }
 
     @Override
     public List<Restaurant> showRestaurantList(Category category) {
@@ -64,4 +56,22 @@ public class RestaurantServiceImpl implements RestaurantService {
     public void restaurantDelete(UserResponse user, Long rno) {
 
     }
+
+    @Override
+    public List<RestaurantListResponse> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<RestaurantListResponse> findByCategory(Category category) {
+        List<Restaurant> restaurantEntityList = restaurantRepository.findByCategoryOrderByRnoDesc(category);
+        List<RestaurantListResponse> RestaurantDTO = new ArrayList<>();
+
+        for (Restaurant restaurantEntity : restaurantEntityList) {
+            RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
+            System.out.println(RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity)));
+        }
+        return RestaurantDTO;
+    }
+
 }

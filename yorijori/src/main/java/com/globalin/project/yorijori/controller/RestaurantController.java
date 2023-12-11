@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +26,16 @@ public class RestaurantController {
     private final UserRepository userRepository;
     private final RestaurantRepository restaurantRepository;
 
-    /*
+
     @GetMapping("/list/category")
-    public List<RestaurantListResponse> restaurantListPage(Category category) {
-        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.();
+    public String restaurantListPage(Model model, @RequestParam  Category category) {
+        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.findByCategory(category);
         model.addAttribute("restaurantList", RestaurantListResponseList);
-        System.out.println("gggg" + model.addAttribute("restaurantList", RestaurantListResponseList));
         return "restaurant/list";
     }
-    */
 
 
+    /*
     @GetMapping("/list")
     public String findAll(Model model){
         List<RestaurantListResponse> RestaurantListResponseList = restaurantService.findAll();
@@ -45,7 +43,7 @@ public class RestaurantController {
         System.out.println("gggg" + model.addAttribute("restaurantList", RestaurantListResponseList));
         return "restaurant/list";
     }
-
+    */
 
     @GetMapping("/details")
     public String details() {

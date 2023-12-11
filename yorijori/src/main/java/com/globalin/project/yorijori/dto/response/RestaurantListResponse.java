@@ -21,4 +21,6 @@ public class RestaurantListResponse {
         restaurantListResponse.setCategory(restaurantListResponse.getCategory());
         return restaurantListResponse;
     }
+
+
 }

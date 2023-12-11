@@ -34,4 +34,7 @@ public interface RestaurantService {
     void restaurantDelete(UserResponse user, Long rno);
 
     List<RestaurantListResponse> findAll();
+
+    List<RestaurantListResponse> findByCategory(Category category);
+
 }
