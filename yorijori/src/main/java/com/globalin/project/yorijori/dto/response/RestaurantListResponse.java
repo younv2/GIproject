@@ -13,12 +13,17 @@ public class RestaurantListResponse {
     private Long rno;
     private String name;
     private String category;
+    private String thumbnail;
+    private String description;
 
     public static RestaurantListResponse toRestaurantListResponse(Restaurant restaurantEntity) {
         RestaurantListResponse restaurantListResponse = new RestaurantListResponse();
         restaurantListResponse.setRno(restaurantEntity.getRno());
         restaurantListResponse.setName(restaurantEntity.getName());
         restaurantListResponse.setCategory(restaurantEntity.getCategory().name());
+        restaurantListResponse.setThumbnail(restaurantEntity.getThumbnail());
+        restaurantListResponse.setDescription(restaurantEntity.getDescription());
+
         return restaurantListResponse;
     }
 }
