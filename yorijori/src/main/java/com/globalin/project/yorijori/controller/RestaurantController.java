@@ -66,7 +66,7 @@ public class RestaurantController {
 
         User user = userRepository.findByUsername(userName);
         restaurantService.restaurantRegistration(user,restaurantRegistrationRequest);
-        return "redirect:/restaurant/list";
+        return "redirect:/";
     }
 
     @GetMapping("/modify")
