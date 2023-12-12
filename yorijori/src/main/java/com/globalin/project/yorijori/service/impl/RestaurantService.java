@@ -37,4 +37,5 @@ public interface RestaurantService {
 
     List<RestaurantListResponse> findByCategory(Category category);
 
+    List<RestaurantListResponse> findByName(String restaurant);
 }
