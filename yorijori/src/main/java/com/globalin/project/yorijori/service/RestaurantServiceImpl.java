@@ -33,18 +33,16 @@ public class RestaurantServiceImpl implements RestaurantService {
         return null;
     }
 
-
     @Override
     public List<Restaurant> showRestaurantList(Category category) {
-        List<Restaurant> restaurantList = restaurantRepository.findAll();
-        return restaurantRepository.findByCategoryOrderByRnoDesc(category);
+        return null;
     }
 
     @Override
     public List<Restaurant> showRestaurantList(String name) {
-        List<Restaurant> restaurantList = restaurantRepository.findAll();
-        return restaurantRepository.findByNameContainingOrderByRnoDesc(name);
+        return null;
     }
+
 
     @Override
     public void restaurantModify(Long rno, RestaurantRegistrationRequest req) {
@@ -72,4 +70,16 @@ public class RestaurantServiceImpl implements RestaurantService {
         return RestaurantDTO;
     }
 
+    @Override
+    public List<RestaurantListResponse> findByName(String restaurant) {
+        List<Restaurant> restaurantEntityList = restaurantRepository.findByNameContainingOrderByRnoDesc(restaurant);
+        List<RestaurantListResponse> RestaurantDTO = new ArrayList<>();
+
+        for (Restaurant restaurantEntity : restaurantEntityList) {
+            RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
+        }
+        return RestaurantDTO;
+    }
 }
+
+
