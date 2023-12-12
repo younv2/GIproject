@@ -1,6 +1,7 @@
 package com.globalin.project.yorijori.controller;
 
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
+import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
@@ -42,8 +43,11 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-    @GetMapping("/details")
-    public String details() {
+    @GetMapping("/details/{rno}")
+    public String details(@PathVariable("rno")Long rno, Model model) {
+        System.out.println(rno);
+        RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
+        model.addAttribute("detail",restaurantDetailResponse);
         return "restaurant/details";
     }
     
@@ -70,6 +74,7 @@ public class RestaurantController {
     public String modifyPage() {
         return "restaurant/modify";
     }
+
     
     //삭제
 }
