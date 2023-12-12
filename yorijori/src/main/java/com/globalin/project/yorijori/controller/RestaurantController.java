@@ -34,16 +34,13 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-
-    /*
-    @GetMapping("/list")
-    public String findAll(Model model){
-        List<RestaurantListResponse> RestaurantListResponseList = restaurantService.findAll();
-        model.addAttribute("restaurantList", RestaurantListResponseList);
-        System.out.println("gggg" + model.addAttribute("restaurantList", RestaurantListResponseList));
+    @GetMapping("/list/name/{name}")
+    public String restaurantListPage(Model model, @PathVariable("name") String name){
+        System.out.println(name);
+        List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(name);
+        model.addAttribute("restaurantList", RestaurantListResponse);
         return "restaurant/list";
     }
-    */
 
     @GetMapping("/details")
     public String details() {
