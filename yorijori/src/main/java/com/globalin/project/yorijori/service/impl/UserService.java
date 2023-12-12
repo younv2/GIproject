@@ -18,5 +18,5 @@ public interface UserService {
 
     void userModify(UserModifyRequest userModifyRequest);
 
-    void userDelete(LoginRequest loginRequest);
+    boolean userDelete(LoginRequest loginRequest);
 }

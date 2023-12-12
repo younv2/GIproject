@@ -7,9 +7,10 @@ import java.time.LocalDateTime;
 public class SignUpRequest {
     private String nickname;
     private String name;
+    private String password;
     private String username;
     private String email;
     private String phone_number;
-    private String password;
+
 
 }

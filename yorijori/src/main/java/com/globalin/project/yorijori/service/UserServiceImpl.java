@@ -42,8 +42,7 @@ public class UserServiceImpl implements UserService {
             if (loginRequest.getPassword().equals(user.getPassword())) {
                 System.out.println("비밀번호 정상");
                 return user.getUsername();
-            } else
-            {
+            } else {
                 System.out.println("비밀번호가 틀림" + loginRequest.getPassword() + "   " + user.getPassword());
                 return null;
             }
@@ -71,13 +70,34 @@ public class UserServiceImpl implements UserService {
         else
             return true;
     }
+
     @Override
     public void userModify(UserModifyRequest userModifyRequest) {
+
+        String id = userModifyRequest.getUsername(); // ModifyRequest값으로 받은 Username을 id로 저장
+        User user = userRepository.findByUsername(id); // id로 찾은 정보를 user객체로 저장
+
+        //user객체의 정보를 업데이트하는 작업
+
+        user.setName(userModifyRequest.getName());
+        user.setPassword(userModifyRequest.getPassword());
+        user.setNickname(userModifyRequest.getNickname());
+        user.setPhone_number(userModifyRequest.getPhone_number());
+        user.setEmail(userModifyRequest.getEmail());
+
+        userRepository.save(user);
 
     }
 
     @Override
-    public void userDelete(LoginRequest loginRequest) {
-
+    public boolean userDelete(LoginRequest loginRequest) {
+        User user = userRepository.findByUsername(loginRequest.getUsername());
+        if(loginRequest.getPassword().equals(user.getPassword()))
+        {
+            userRepository.delete(user);
+            return true;
+        }
+        else
+            return false;
     }
 }

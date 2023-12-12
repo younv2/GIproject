@@ -57,12 +57,12 @@ public class UserController {
         return "user/userInfo";
     }
 
-    @GetMapping("/modify")
+    @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage() {
         return "user/modifyPage";
     }
 
-    @PutMapping("/modify")
+    @PutMapping("/modify") // 수정버튼 누르고 작동하는 거
     public String modify() {
         return "redirect:";
     }
@@ -82,8 +82,14 @@ public class UserController {
     }
 
     @DeleteMapping("/deleted")
-    public String checkPassword() {
-        return "redirect:";
+    public String userDelete(HttpSession session,@RequestParam String password)
+    {
+        LoginRequest loginRequest = new LoginRequest();
+        String username = (String)session.getAttribute("username");
+        loginRequest.setUsername(username);
+        loginRequest.setPassword(password);
+        userService.userDelete(loginRequest);
+        return "redirect:/";
     }
 
 
