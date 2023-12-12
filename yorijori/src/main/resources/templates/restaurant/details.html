@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>details</title>
 </head>
 <body>
     <h2>details</h2>
+<table>
+    <tr>
+        <th>가게명</th>
+        <td th:text="${detail.name}"></td>
+    </tr>
+    <tr>
+        <th>사진</th>
+        <td th:text="${detail.thumbnail}"></td>
+    </tr>
+    <tr>
+        <th>주소</th>
+        <td th:text="${detail.address}"></td>
+    </tr>
+    <tr>
+        <th>오픈</th>
+        <td th:text="${detail.start_time}"></td>
+    </tr>
+    <tr>
+        <th>마감</th>
+        <td th:text="${detail.end_time}"></td>
+    </tr>
+    <tr>
+        <th>가게상세</th>
+        <td th:text="${detail.description}"></td>
+    </tr>
+<!--    <tr>-->
+<!--        <th></th>-->
+<!--        <td th:text="${detail.phone_nubmer}"></td>-->
+<!--    </tr>-->
+</table>
 </body>
 </html>
