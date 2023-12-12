@@ -70,11 +70,20 @@ public class RestaurantController {
         return "redirect:/";
     }
 
-    @GetMapping("/modify")
-    public String modifyPage() {
+    @GetMapping("/modify/{rno}")
+    public String modifyPage(@PathVariable Long rno, Model model) {
+        RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
+        model.addAttribute("restaurantModify", restaurantDetailResponse);
         return "restaurant/modify";
     }
 
+    @PostMapping("/modify/{rno}")
+    public String modifyPage(@PathVariable("rno") Long rno, @ModelAttribute RestaurantRegistrationRequest req, Model model) {
+        System.out.println("수정");
+        RestaurantRegistrationRequest restaurantResponse = restaurantService.restaurantUpdate(rno, req);
+        model.addAttribute("restaurantModify", req);
+        return "redirect:/";
+    }
     
     //삭제
 }

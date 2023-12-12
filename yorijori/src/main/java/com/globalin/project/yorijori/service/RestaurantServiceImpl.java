@@ -11,7 +11,6 @@ import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -55,8 +54,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void restaurantModify(Long rno, RestaurantRegistrationRequest req) {
-
+        Restaurant restaurant = Restaurant.toUpdateEntity(req);
+        restaurantRepository.save(restaurant);
     }
+
+
+
+    @Override
+    public RestaurantRegistrationRequest restaurantUpdate(Long rno, RestaurantRegistrationRequest req) {
+        Restaurant restaurant = Restaurant.toUpdateEntity(req);
+        restaurantRepository.save(restaurant);
+        return findByRno(req.getRno());
+    }
+
 
     @Override
     public void restaurantDelete(UserResponse user, Long rno) {
@@ -88,6 +98,18 @@ public class RestaurantServiceImpl implements RestaurantService {
             RestaurantDTO.add(RestaurantListResponse.toRestaurantListResponse(restaurantEntity));
         }
         return RestaurantDTO;
+    }
+
+    @Override
+    public RestaurantRegistrationRequest findByRno(Long rno) {
+        Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(rno);
+        if(optionalRestaurant.isPresent()) {
+            Restaurant restaurantEntity = optionalRestaurant.get();
+            RestaurantRegistrationRequest req = RestaurantRegistrationRequest.toRestaurantDTO(restaurantEntity);
+            return req;
+        }else{
+            return null;
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package com.globalin.project.yorijori.entity;
 
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
+import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -58,4 +59,21 @@ public class Restaurant {
         return restaurantEntity;
     }
 
+    public static Restaurant toUpdateEntity( RestaurantRegistrationRequest restaurantRegistrationRequest) {
+        Restaurant restaurantEntity = new Restaurant();
+        restaurantEntity.setRno(restaurantRegistrationRequest.getRno());
+        restaurantEntity.setName(restaurantRegistrationRequest.getName());
+        restaurantEntity.setAddress(restaurantRegistrationRequest.getAddress());
+        restaurantEntity.setCategory(restaurantRegistrationRequest.getCategory());
+        restaurantEntity.setDescription(restaurantRegistrationRequest.getDescription());
+        restaurantEntity.setStart_time(restaurantRegistrationRequest.getStart_time());
+        restaurantEntity.setEnd_time(restaurantRegistrationRequest.getEnd_time());
+        restaurantEntity.setBusiness_number(restaurantRegistrationRequest.getBusiness_number());
+        restaurantEntity.setThumbnail(restaurantRegistrationRequest.getThumbnail());
+        restaurantEntity.setPhone_number(restaurantRegistrationRequest.getPhone_number());
+        restaurantEntity.setDuplicate_reservation(restaurantRegistrationRequest.getDuplicate_reservation());
+
+        return restaurantEntity;
+
+    }
 }

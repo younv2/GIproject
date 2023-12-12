@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 
 public interface RestaurantService {
+
     //가게 등록
     void restaurantRegistration(User user, RestaurantRegistrationRequest req);
 
@@ -30,6 +31,9 @@ public interface RestaurantService {
     //가게 정보 수정
     void restaurantModify(Long rno, RestaurantRegistrationRequest req);
 
+    //가게 정보 수정
+    RestaurantRegistrationRequest restaurantUpdate(Long rno, RestaurantRegistrationRequest restaurantRegistrationRequest);
+
     //가게 삭제
     void restaurantDelete(UserResponse user, Long rno);
 
@@ -38,4 +42,6 @@ public interface RestaurantService {
     List<RestaurantListResponse> findByCategory(Category category);
 
     List<RestaurantListResponse> findByName(String restaurant);
+
+    RestaurantRegistrationRequest findByRno(Long rno);
 }

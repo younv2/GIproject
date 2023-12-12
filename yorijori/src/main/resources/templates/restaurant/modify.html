@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>details</title>
+</head>
+<body>
+<h2>Modify</h2>
+<form>
+    <form action="/modify" method="post" name="modifyForm">
+        : <input type="hidden" name="rno" th:value="${restaurantModify.rno}"><br>
+        <input type="text" name="name" th:value="${restaurantModify.name}"><br>
+        <input type="text" name="thumbnail" th:value="${restaurantModify.thumbnail}"> <br>
+        <input type="text" name="description" th:value="${restaurantModify.address}"> <br>
+        <textarea name="" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea> <br>
+        <input type="text" name="phone_number" th:value="${restaurantModify.phone_number}">
+        <input type="text" name="start_time" th:value="${restaurantModify.start_time}">
+        <input type="text" name="end_time" th:value="${restaurantModify.end_time}">
+        <input type="submit" value="글수정">
+    </form>
+</form>
+<script>
+
+</script>
+</body>
+</html>
