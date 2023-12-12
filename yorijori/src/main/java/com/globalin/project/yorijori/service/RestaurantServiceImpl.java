@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public RestaurantDetailResponse restaurantDetail(Long rno) {
-        return null;
+        Optional<Restaurant> optionalRestaurantEntity = restaurantRepository.findById(rno);
+        if(optionalRestaurantEntity.isPresent()) {
+            Restaurant restaurantEntity = optionalRestaurantEntity.get();
+            RestaurantDetailResponse restaurantDetailResponse = RestaurantDetailResponse.toRestaurantDetailResponse(restaurantEntity);
+            return restaurantDetailResponse;
+        }else{
+            return null;
+        }
+
     }
 
     @Override
