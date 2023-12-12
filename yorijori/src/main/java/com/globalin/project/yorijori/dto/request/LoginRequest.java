@@ -1,5 +1,8 @@
 package com.globalin.project.yorijori.dto.request;
 
+import lombok.Getter;
+
+@Getter
 public class LoginRequest {
 
     private String username;

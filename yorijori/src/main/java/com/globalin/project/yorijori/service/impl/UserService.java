@@ -8,7 +8,7 @@ import com.globalin.project.yorijori.entity.User;
 
 public interface UserService {
 
-    UserResponse login(LoginRequest loginRequest);
+    String login(LoginRequest loginRequest);
 
     UserResponse info(String username);
 

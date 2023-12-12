@@ -29,8 +29,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override // 로그인기능 구현
-    public UserResponse login(LoginRequest loginRequest) {
-        return null;
+    public String login(LoginRequest loginRequest) {
+        // loginrequest.Username을 DB에서 찾아서 일치하는지 여부를 진행 맞으면 로그인 성공하는 절차
+
+        String id = loginRequest.getUsername();
+        User user = userRepository.findByUsername(id);
+
+        if(user == null){
+            System.out.println("유저가 존재하지 않음");
+            return null;
+        }else {
+            if (loginRequest.getPassword().equals(user.getPassword())) {
+                System.out.println("비밀번호 정상");
+                return user.getUsername();
+            } else
+            {
+                System.out.println("비밀번호가 틀림" + loginRequest.getPassword() + "   " + user.getPassword());
+                return null;
+            }
+        }
     }
 
     @Override

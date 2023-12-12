@@ -25,9 +25,17 @@ public class UserController {
     @PostMapping("/login") // 로그인 기능 구현
     public String login(@RequestBody LoginRequest request,
                         HttpSession session) {
-        UserResponse user = userService.login(request);
-        session.setAttribute("username", "123");//임시로 "123"으로 변경 추후 작업 후 user.getUsername()로 바꿔주세요
-        return "redirect:/";
+        String username = userService.login(request);
+        if(username!=null)
+        {
+            session.setAttribute("username", username);
+            System.out.println("로그인 완료");
+            return "redirect:/";
+        }
+        else {
+            System.out.println("로그인 실패");
+            return null;
+        }
     }
 
     @PostMapping("/logout")
@@ -39,7 +47,7 @@ public class UserController {
     @PostMapping("/register")
     public String register(@RequestBody SignUpRequest signUpRequest) { //다 적고 회원가입 버튼 눌렀어 그러면 여기로 와서 DB로 정보를 저장할수있는 로직처리
         userService.signUp(signUpRequest);
-        return "redirect:/sign";
+        return "redirect:/user/sign";
     }
 
     @GetMapping("/myPage")
