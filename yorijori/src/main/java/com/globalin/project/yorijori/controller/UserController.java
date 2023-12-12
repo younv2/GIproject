@@ -52,6 +52,8 @@ public class UserController {
 
     @GetMapping("/myPage")
     public String userInfo(HttpSession session, Model model) {
+        if(session.getAttribute("username") == null)
+            return "user/sign";
         return "user/userInfo";
     }
 

@@ -1,0 +1,25 @@
+ul > li {
+    display: block;
+    margin: 0px;
+}
+div
+{
+    display: flex;
+}
+.main_container {
+    width: 80%;
+}
+.sub_container >ul > li
+{
+    margin-bottom: 80px;
+}
+.main_container >ul > li
+{
+    margin-bottom: 10px;
+}
+.v_line {
+    margin-left: 3%;
+    border-left : thin solid #dddddd;
+
+    height : 60vh;
+}
