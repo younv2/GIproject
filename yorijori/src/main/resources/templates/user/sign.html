@@ -55,7 +55,7 @@
                                 <input type="text" name="join_username" class="form-style" placeholder="Your ID" id="join_username" autocomplete="off">
                                 <i class="input-icon uil uil-user"></i>
                               </div>
-                                <button type="button" id="id_check" onclick="sameCheck()">중복확인</button>
+                                <button type="button" id="id_check">중복확인</button>
                               <div class="form-group mt-2">
                                 <input type="password" name="join_pass" class="form-style" placeholder="Your Password" id="join_pass" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
@@ -99,7 +99,7 @@
     
 </body>
 <script>
-
+    let submitCheck = false;
     $("#join_checkpass").blur(function () {
         if($("#join_checkpass").val() != $("#join_pass").val()) {
             $("#join_checkpass").css("border", "2px solid");
@@ -109,7 +109,11 @@
             $("#join_checkpass").css("border", "none");
     });
   $("#join").click(function () {
-
+      if(submitCheck==false)
+      {
+          alert("아이디 중복확인 먼저 해주세요");
+          return;
+      }
       if($("#join_checkpass").val() != $("#join_pass").val())
       {
           alert("비밀번호가 맞지 않습니다. 다시 확인해주세요");
@@ -167,7 +171,7 @@
           }
       });
   });
-    let submitCheck = false;
+
     $("#id_check").click(function() {
         let username = $('#join_username').val();
 
@@ -175,12 +179,12 @@
             type: "get",
             url: "/user/checkid?username=" + username
         }).done((res) => {
-            //console.log(res);
-            if (res.data == true) {
-                alert(res.msg);
+            console.log(res);
+            if (res == true) {
+                alert("사용할 수 있는 아이디입니다.");
                 submitCheck = true; // 중복 체크 완료
             } else {
-                alert(res.msg);
+                alert("이미 사용중인 아이디입니다.");
                 submitCheck = false;
             }
 

@@ -65,12 +65,13 @@ public class UserController {
         return "redirect:";
     }
 
+    @ResponseBody
     @GetMapping("/checkid")
-    public String checkId(@RequestParam String username)
+    public boolean checkId(@RequestParam String username)
     {
-        userService.checkId(username);
-        System.out.println(username + "111");
-        return "/sign";
+        System.out.println(username);
+
+        return userService.checkId(username);
     }
     @GetMapping("/checkPassword")
     public String goToCheckPassword(HttpSession session,
