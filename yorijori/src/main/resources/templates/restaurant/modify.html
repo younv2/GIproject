@@ -11,6 +11,14 @@
             <input type="text" name="name" id="name" th:value="${restaurantModify.name}"><br>
             <input type="text" name="thumbnail" id="thumbnail" th:value="${restaurantModify.thumbnail}"> <br>
             <input type="text" name="address" id="address" th:value="${restaurantModify.address}"> <br>
+            <label for="category" th:value="${restaurantModify.category}">카테고리 선택</label>
+            <select name="category" id="category">
+                <option value="KR">한식</option>
+                <option value="CN">중식</option>
+                <option value="JP">일식</option>
+                <option value="EU">양식</option>
+                <option value="BS">분식</option>
+            </select><br>
             <textarea name="description" id="description" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea> <br>
             <input type="text" name="phone_number"  id="phone_number" th:value="${restaurantModify.phone_number}">
             <input type="text" name="start_time" id="start_time" th:value="${restaurantModify.start_time}">
