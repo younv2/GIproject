@@ -91,12 +91,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deleted")
-    public String userDelete(HttpSession session,@RequestParam String password){
-
-        LoginRequest loginRequest = new LoginRequest();
-        String username = (String)session.getAttribute("username");
-        loginRequest.setUsername(username);
-        loginRequest.setPassword(password);
+    public String userDelete(@RequestBody LoginRequest loginRequest){
         userService.userDelete(loginRequest);
         return "redirect:/";
     }
