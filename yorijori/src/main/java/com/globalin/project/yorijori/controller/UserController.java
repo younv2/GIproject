@@ -84,15 +84,10 @@ public class UserController {
     @GetMapping("/checkPassword")
     public String goToCheckPassword(HttpSession session,
                                 Model model) {
-        return "user/checkPassword";
-    }
-
-    @GetMapping("/deleted")
-    public String userDeletePage(HttpSession session){
         if(session.getAttribute("username") == null)
             return "user/sign";
 
-        return "user/deleted";
+        return "user/checkPassword";
     }
 
     @DeleteMapping("/deleted")
