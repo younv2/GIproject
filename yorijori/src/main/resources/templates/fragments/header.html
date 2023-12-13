@@ -9,7 +9,7 @@
 
 <header>
     <!--로고-->
-    <a href="/"> <img src="img/logo.png" alt="asd" width="260px"></a>
+    <a href="/"> <img th:src="@{/img/logo.png}" alt="asd" width="260px"></a>
     <ul>
         <li><a th:if="${#strings.isEmpty(session.username)}" href="/user/sign">로그인</a></li>
         <li><a th:unless="${#strings.isEmpty(session.username)}" href="#" onclick="javascript:page_move('/user/logout');">로그아웃</a></li>
@@ -18,6 +18,7 @@
     </ul>
 
 </header>
+    <hr>
 </th:block>
 </body>
 </html>

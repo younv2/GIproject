@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
-    <link rel="stylesheet" href="css/general.css">
+    <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
     <script src="js/general.js"></script>
 </head>
 
 <body>
     <th:block th:replace="fragments/header :: headerFragment"></th:block>
-    <hr>
     <div class = "main_container">
         <!--검색-->
         <input type="text" name="search" class="search"><br>

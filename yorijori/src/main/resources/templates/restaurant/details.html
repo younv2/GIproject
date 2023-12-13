@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
     <title>details</title>
 </head>
 <body>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
     <h2>details</h2>
 <table>
     <tr>
@@ -36,5 +38,6 @@
 <!--        <td th:text="${detail.phone_nubmer}"></td>-->
 <!--    </tr>-->
 </table>
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
