@@ -59,7 +59,7 @@ public class UserController {
 
     @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage() {
-        return "user/modifyPage";
+        return "user/modify";
     }
 
     @PutMapping("/modify") // 수정버튼 누르고 작동하는 거
