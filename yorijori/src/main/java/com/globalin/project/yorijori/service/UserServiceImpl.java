@@ -93,6 +93,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userDelete(LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsername());
+
         if(loginRequest.getPassword().equals(user.getPassword()))
         {
             userRepository.delete(user);

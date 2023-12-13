@@ -90,11 +90,17 @@ public class UserController {
         return "user/checkPassword";
     }
 
+    @ResponseBody
     @DeleteMapping("/deleted")
-    public String userDelete(@RequestBody LoginRequest loginRequest){
-        userService.userDelete(loginRequest);
-        return "redirect:/";
+    public boolean userDelete(@RequestBody LoginRequest loginRequest,HttpSession session){
+        boolean flag = userService.userDelete(loginRequest);
+        if(flag)
+        {
+            System.out.println("통과");
+            session.invalidate();
+            return true;
+        }
+        else
+            return false;
     }
-
-
 }
