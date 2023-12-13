@@ -29,10 +29,7 @@ public interface RestaurantService {
     List<Restaurant> showRestaurantList(String name);
 
     //가게 정보 수정
-    void restaurantModify(Long rno, RestaurantRegistrationRequest req);
-
-    //가게 정보 수정
-    RestaurantRegistrationRequest restaurantUpdate(Long rno, RestaurantRegistrationRequest restaurantRegistrationRequest);
+    void restaurantUpdate(Long rno, RestaurantRegistrationRequest req);
 
     //가게 삭제
     void restaurantDelete(UserResponse user, Long rno);
@@ -43,5 +40,4 @@ public interface RestaurantService {
 
     List<RestaurantListResponse> findByName(String restaurant);
 
-    RestaurantRegistrationRequest findByRno(Long rno);
 }

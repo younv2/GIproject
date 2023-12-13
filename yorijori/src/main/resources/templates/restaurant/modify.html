@@ -3,24 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <h2>Modify</h2>
-<form>
-    <form action="/modify" method="post" name="modifyForm">
-        : <input type="hidden" name="rno" th:value="${restaurantModify.rno}"><br>
-        <input type="text" name="name" th:value="${restaurantModify.name}"><br>
-        <input type="text" name="thumbnail" th:value="${restaurantModify.thumbnail}"> <br>
-        <input type="text" name="description" th:value="${restaurantModify.address}"> <br>
-        <textarea name="" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea> <br>
-        <input type="text" name="phone_number" th:value="${restaurantModify.phone_number}">
-        <input type="text" name="start_time" th:value="${restaurantModify.start_time}">
-        <input type="text" name="end_time" th:value="${restaurantModify.end_time}">
-        <input type="submit" value="글수정">
-    </form>
-</form>
+            <input type="hidden" name="rno" id="rno" th:value="${restaurantModify.rno}"><br>
+            <input type="text" name="name" id="name" th:value="${restaurantModify.name}"><br>
+            <input type="text" name="thumbnail" id="thumbnail" th:value="${restaurantModify.thumbnail}"> <br>
+            <input type="text" name="address" id="address" th:value="${restaurantModify.address}"> <br>
+            <textarea name="description" id="description" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea> <br>
+            <input type="text" name="phone_number"  id="phone_number" th:value="${restaurantModify.phone_number}">
+            <input type="text" name="start_time" id="start_time" th:value="${restaurantModify.start_time}">
+            <input type="text" name="end_time" id="end_time" th:value="${restaurantModify.end_time}">
+            <input type="submit" value="글수정" id="restaurant_update">
 <script>
+    $("#restaurant_update").click(function () {
 
+        const rno = $("#rno").val();
+        const name = $("#name").val();
+        const address = $("#address").val();
+        const business_number = $("#business_number").val();
+        const phone_number = $("#phone_number").val();
+        const duplicate_reservation = $("#duplicate_reservation").val();
+        const category = $("#category").val();
+        const start_time = $("#start_time").val();
+        const end_time = $("#end_time").val();
+        const description = $("#description").val();
+        const thumbnail = $("#thumbnail").val();
+
+        const data = {
+            'rno' : rno,
+            'name': name,
+            'address': address,
+            'business_number': business_number,
+            'phone_number': phone_number,
+            'duplicate_reservation': duplicate_reservation,
+            'category': category,
+            'start_time': start_time,
+            'end_time': end_time,
+            'description': description,
+            'thumbnail' : thumbnail
+        }
+        $.ajax({
+            url: "/restaurant/update/"+rno,
+            type: "PUT",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8",
+            // beforeSend : function(xhr){
+            //     xhr.setRequestHeader(header, token);
+            // },
+            success: function(data){
+                alert("수정 되었습니다.");
+                $(location).attr('href','/');
+            },
+            error: function(){
+                alert("err");
+            }
+        });
+    });
 </script>
 </body>
 </html>

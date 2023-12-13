@@ -59,6 +59,7 @@ public class Restaurant {
         return restaurantEntity;
     }
 
+
     public static Restaurant toUpdateEntity( RestaurantRegistrationRequest restaurantRegistrationRequest) {
         Restaurant restaurantEntity = new Restaurant();
         restaurantEntity.setRno(restaurantRegistrationRequest.getRno());

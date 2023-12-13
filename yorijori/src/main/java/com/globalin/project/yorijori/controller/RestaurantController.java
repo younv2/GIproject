@@ -43,7 +43,7 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-    @GetMapping("/details/{rno}")
+    @GetMapping("details/{rno}")
     public String details(@PathVariable("rno")Long rno, Model model) {
         System.out.println(rno);
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
@@ -77,12 +77,11 @@ public class RestaurantController {
         return "restaurant/modify";
     }
 
-    @PostMapping("/modify/{rno}")
-    public String modifyPage(@PathVariable("rno") Long rno, @ModelAttribute RestaurantRegistrationRequest req, Model model) {
-        System.out.println("수정");
-        RestaurantRegistrationRequest restaurantResponse = restaurantService.restaurantUpdate(rno, req);
-        model.addAttribute("restaurantModify", req);
-        return "redirect:/";
+    @PutMapping("/update/{rno}")
+    public String updatePage(@PathVariable("rno") Long rno, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest){
+        System.out.println("rno:" + rno);
+        restaurantService.restaurantUpdate(rno, restaurantRegistrationRequest);
+        return "redirect:/restaurant/details/"+rno;
     }
     
     //삭제

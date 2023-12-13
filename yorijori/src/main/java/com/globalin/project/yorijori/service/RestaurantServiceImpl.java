@@ -51,22 +51,12 @@ public class RestaurantServiceImpl implements RestaurantService {
         return null;
     }
 
-
     @Override
-    public void restaurantModify(Long rno, RestaurantRegistrationRequest req) {
-        Restaurant restaurant = Restaurant.toUpdateEntity(req);
-        restaurantRepository.save(restaurant);
+    public void restaurantUpdate(Long rno, RestaurantRegistrationRequest req) {
+        Restaurant restaurantEntity = Restaurant.toUpdateEntity(req);
+        restaurantEntity.setRno(rno);
+        restaurantRepository.save(restaurantEntity);
     }
-
-
-
-    @Override
-    public RestaurantRegistrationRequest restaurantUpdate(Long rno, RestaurantRegistrationRequest req) {
-        Restaurant restaurant = Restaurant.toUpdateEntity(req);
-        restaurantRepository.save(restaurant);
-        return findByRno(req.getRno());
-    }
-
 
     @Override
     public void restaurantDelete(UserResponse user, Long rno) {
@@ -100,17 +90,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return RestaurantDTO;
     }
 
-    @Override
-    public RestaurantRegistrationRequest findByRno(Long rno) {
-        Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(rno);
-        if(optionalRestaurant.isPresent()) {
-            Restaurant restaurantEntity = optionalRestaurant.get();
-            RestaurantRegistrationRequest req = RestaurantRegistrationRequest.toRestaurantDTO(restaurantEntity);
-            return req;
-        }else{
-            return null;
-        }
-    }
+
 }
 
 
