@@ -2,6 +2,7 @@ package com.globalin.project.yorijori.controller;
 
 import com.globalin.project.yorijori.dto.request.LoginRequest;
 import com.globalin.project.yorijori.dto.request.SignUpRequest;
+import com.globalin.project.yorijori.dto.request.UserModifyRequest;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
@@ -58,13 +59,18 @@ public class UserController {
     }
 
     @GetMapping("/modify") //페이지에 들어왔을 때
-    public String modifyPage() {
+    public String modifyPage(HttpSession session) {
+        if(session.getAttribute("username") == null)
+        return "user/sign";
+
         return "user/modify";
     }
 
     @PutMapping("/modify") // 수정버튼 누르고 작동하는 거
-    public String modify() {
-        return "redirect:";
+    public String modify(HttpSession session, @RequestBody UserModifyRequest userModifyRequest) {
+
+            userService.userModify(userModifyRequest);
+            return "redirect:/";
     }
 
     @ResponseBody
@@ -82,8 +88,17 @@ public class UserController {
     }
 
     @DeleteMapping("/deleted")
-    public String userDelete(HttpSession session,@RequestParam String password)
-    {
+    public String userDeletePage(HttpSession session){
+            if(session.getAttribute("username") == null)
+                return "user/sign";
+
+                return "user/deleted";
+    }
+
+
+    @DeleteMapping("/deleted")
+    public String userDelete(HttpSession session,@RequestParam String password){
+
         LoginRequest loginRequest = new LoginRequest();
         String username = (String)session.getAttribute("username");
         loginRequest.setUsername(username);
