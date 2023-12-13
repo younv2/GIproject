@@ -33,7 +33,7 @@ public class ReservationController {
     }
 
     @PostMapping("/resister")
-    public String reservationResiter(HttpSession session)
+    public String reservationResister(HttpSession session)
     {
         String username = (String)session.getAttribute("username");
 
