@@ -87,14 +87,13 @@ public class UserController {
         return "user/checkPassword";
     }
 
-    @DeleteMapping("/deleted")
+    @GetMapping("/deleted")
     public String userDeletePage(HttpSession session){
-            if(session.getAttribute("username") == null)
-                return "user/sign";
+        if(session.getAttribute("username") == null)
+            return "user/sign";
 
-                return "user/deleted";
+        return "user/deleted";
     }
-
 
     @DeleteMapping("/deleted")
     public String userDelete(HttpSession session,@RequestParam String password){
