@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <title>My page</title>
     <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
-    <link rel="stylesheet" href="css/userInfo.css">
-
-    <link rel="stylesheet" href="../css/userInfo.css">
+    <link rel="stylesheet" href="/css/userInfo.css">
 </head>
 <body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <div>
         <div class = "sub_container">
             <ul>
-                <li><a href=""></a> 회원 정보 수정</li>
-                <li>회원 탈퇴</li>
+                <li><a href="/user/myPage">마이 페이지</a> </li>
+                <li><a href="/user/modify"> 회원 정보 수정</a></li>
+                <li><a href="/user/checkPassword">회원 탈퇴</a></li>
             </ul>
         </div>
         <div class="v_line"></div>
         <div class = "main_container">
             <ul>
                 <li>아이디 <span></span></li>
+                <li>이름 <span></span></li>
                 <li>닉네임 <span></span></li>
                 <li>이메일 <span></span></li>
                 <li>전화번호 <span></span></li>
