@@ -3,15 +3,17 @@ package com.globalin.project.yorijori.service.impl;
 import com.globalin.project.yorijori.dto.response.ReservationResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
+import com.globalin.project.yorijori.entity.Restaurant;
+import com.globalin.project.yorijori.entity.User;
 
 import java.time.LocalDateTime;
 
 public interface ReservationService {
     
     //예약 등록
-    ReservationResponse reservationRegister(UserResponse user,
-                                            RestaurantDetailResponse detailResponse,
-                                            LocalDateTime reservationTime);
+    void reservationRegister(User user,
+                             Restaurant restaurant,
+                             LocalDateTime reservationTime);
 
     //예약 삭제
     void reservationDelete(UserResponse user, Long vno);
