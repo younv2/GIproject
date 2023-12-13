@@ -19,4 +19,6 @@ public interface UserService {
     void userModify(UserModifyRequest userModifyRequest);
 
     boolean userDelete(LoginRequest loginRequest);
+
+    User findByUsername(String username);
 }

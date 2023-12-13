@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void signUp(SignUpRequest signUpRequest) {
+
         User user = new User();
         user.setUsername(signUpRequest.getUsername());
         user.setName(signUpRequest.getName());
@@ -99,5 +100,13 @@ public class UserServiceImpl implements UserService {
         }
         else
             return false;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+
+        User user = userRepository.findByUsername(username);
+
+        return user;
     }
 }
