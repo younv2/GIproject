@@ -4,6 +4,7 @@ import  com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     List<Restaurant> findByNameContainingOrderByRnoDesc(String name);
     List<Restaurant> findByCategoryOrderByRnoDesc(Category category);
     Restaurant findByName(String name);
-    Restaurant delete(Long rno);
+    @Transactional
+    Restaurant deleteByRno(Long rno);
 }

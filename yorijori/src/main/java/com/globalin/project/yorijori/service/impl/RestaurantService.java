@@ -33,7 +33,7 @@ public interface RestaurantService {
     //가게 삭제
     Restaurant restaurantDelete(Long userId, Long rno);
 
-    void deleteRestaurant(Long rno);
+    Restaurant deleteRestaurant(Long rno);
 
     List<RestaurantListResponse> findAll();
 

@@ -83,10 +83,10 @@ public class RestaurantController {
     }
     
     //삭제
-    @GetMapping("/delete/{rno}")
-    public String deletePage(HttpSession session, @PathVariable("rno") Long rno) {
-        Long userId = (Long) session.getAttribute("1");
-        restaurantService.restaurantDelete(userId, rno);
-        return null;
+    @DeleteMapping("/delete/{rno}")
+    public String deletePage(@PathVariable("rno") Long rno) {
+        //Long userId = (Long) session.getAttribute("1");
+        restaurantService.deleteRestaurant(rno);
+        return "redirect:/";
     }
 }

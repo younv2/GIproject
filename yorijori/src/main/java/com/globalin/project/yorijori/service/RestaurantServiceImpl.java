@@ -10,6 +10,8 @@ import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,8 +65,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void deleteRestaurant(Long rno) {
-        restaurantRepository.delete(rno);
+    public Restaurant deleteRestaurant(Long rno) {
+        return  restaurantRepository.deleteByRno(rno);
     }
 
 
