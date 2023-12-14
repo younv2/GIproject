@@ -12,4 +12,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     //가게 검색
     List<Restaurant> findByNameContainingOrderByRnoDesc(String name);
     List<Restaurant> findByCategoryOrderByRnoDesc(Category category);
+    Restaurant findByName(String name);
 }

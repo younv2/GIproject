@@ -90,6 +90,11 @@ public class RestaurantServiceImpl implements RestaurantService {
         return RestaurantDTO;
     }
 
+    @Override
+    public Restaurant findByRestaurantName(String name) {
+        return restaurantRepository.findByName(name);
+    }
+
 
 }
 

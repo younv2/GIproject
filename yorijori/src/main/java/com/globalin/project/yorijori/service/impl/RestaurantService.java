@@ -40,4 +40,6 @@ public interface RestaurantService {
 
     List<RestaurantListResponse> findByName(String restaurant);
 
+    Restaurant findByRestaurantName(String name);
+
 }
