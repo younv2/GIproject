@@ -19,11 +19,11 @@
         <div class="v_line"></div>
         <div class = "main_container">
             <ul>
-                <li>아이디 <span></span></li>
-                <li>이름 <span></span></li>
-                <li>닉네임 <span></span></li>
-                <li>이메일 <span></span></li>
-                <li>전화번호 <span></span></li>
+                <li>아이디 <span th:text="${userInfo.username}"> </span></li>
+                <li>이름 <span th:text="${userInfo.name}"></span></li>
+                <li>닉네임 <span th:text="${userInfo.nickname}"></span></li>
+                <li>이메일 <span th:text="${userInfo.email}"></span></li>
+                <li>전화번호 <span th:text="${userInfo.phone_number}"></span></li>
             </ul>
         </div>
     </div>

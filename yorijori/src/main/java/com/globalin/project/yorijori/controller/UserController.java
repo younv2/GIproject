@@ -55,14 +55,17 @@ public class UserController {
     public String userInfo(HttpSession session, Model model) {
         if(session.getAttribute("username") == null)
             return "user/sign";
+        UserResponse userResponse = userService.info((String)session.getAttribute("username"));
+        model.addAttribute("userInfo",userResponse);
         return "user/userInfo";
     }
 
     @GetMapping("/modify") //페이지에 들어왔을 때
-    public String modifyPage(HttpSession session) {
+    public String modifyPage(HttpSession session, Model model) {
         if(session.getAttribute("username") == null)
-        return "user/sign";
-
+            return "user/sign";
+        UserResponse userResponse = userService.info((String)session.getAttribute("username"));
+        model.addAttribute("userInfo",userResponse);
         return "user/modify";
     }
 

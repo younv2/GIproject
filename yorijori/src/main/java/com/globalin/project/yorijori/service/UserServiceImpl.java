@@ -24,7 +24,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username);
         UserResponse userResponse = new UserResponse();
         userResponse.setUsername(username);
-        userResponse.setMno(user.getMno());
+        userResponse.setNickname(user.getNickname());
+        userResponse.setName(user.getName());
+        userResponse.setEmail(user.getEmail());
+        userResponse.setPhone_number(user.getPhone_number());
         return userResponse;
     }
 
@@ -56,6 +59,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(signUpRequest.getUsername());
         user.setName(signUpRequest.getName());
         user.setNickname(signUpRequest.getNickname());
+        user.setEmail(signUpRequest.getEmail());
         user.setPhone_number(signUpRequest.getPhone_number());
         user.setPassword(signUpRequest.getPassword());
         user.setCreated_at(LocalDateTime.now());
