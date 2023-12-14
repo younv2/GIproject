@@ -19,15 +19,69 @@
     <div class="v_line"></div>
     <div class = "main_container">
         <ul>
-            <li><input type="text" name="" id="" disabled="disabled">아이디 <span th:value="${userInfo.username}"></span></li>
-            <li><input type="text" name="" id="">닉네임 <span></span></li>
-            <li><input type="password" name="" id="">비밀번호 <span></span></li>
-            <li><input type="password" name="" id="">비밀번호 확인<span></span></li>
-            <li><input type="text" name="" id="">이메일 <span></span></li>
-            <li><input type="text" name="" id="">전화번호 <span></span></li>
+            <li><input type="text" name="" id="username" disabled="disabled" th:value="${userInfo.username}">아이디 <span></span></li>
+            <li><input type="text" name="" id="name" disabled="disabled" th:value="${userInfo.name}">이름 <span></span></li>
+            <li><input type="text" name="" id="nickname" th:value="${userInfo.nickname}">닉네임 <span></span></li>
+            <li><input type="password" name="" id="current_pass">현재 비밀번호 <span></span></li>
+            <li><input type="password" name="" id="new_pass">새 비밀번호 <span></span></li>
+            <li><input type="password" name="" id="check_pass">비밀번호 확인<span></span></li>
+            <li><input type="text" name="" id="email" th:value="${userInfo.email}">이메일 <span></span></li>
+            <li><input type="text" name="" id="phone_number" th:value="${userInfo.phone_number}">전화번호 <span></span></li>
         </ul>
+        <button id="submit">회원 정보 수정</button>
     </div>
 </div>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
+<script>
+    $("#check_pass").blur(function () {
+        if($("#check_pass").val() != $("#new_pass").val()) {
+            $("#check_pass").css("border", "2px solid");
+            $("#check_pass").css("border-color", "red");
+        }
+        else
+            $("#check_pass").css("border", "none");
+    });
+    $("#submit").click(function () {
+        if(submitCheck==false)
+        {
+            alert("아이디 중복확인 먼저 해주세요");
+            return;
+        }
+        if($("#check_pass").val() != $("#new_pass").val())
+        {
+            alert("비밀번호가 맞지 않습니다. 다시 확인해주세요");
+            return;
+        }
+
+        const username = $("#username").val();
+        const password = $("#new_pass").val();
+        const name = $("#name").val();
+        const nickname = $("#nickname").val();
+        const email = $("#join_email").val();
+        const phone_number = $("#join_phone").val();
+
+        const data = {
+            'username': username,
+            'password': password,
+            'name': name,
+            'nickname': nickname,
+            'email': email,
+            'phone_number': phone_number
+        }
+        $.ajax({
+            url: "/user/register",
+            type: "POST",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8",
+            success: function(data){
+                alert("수정 되었습니다.");
+                $(location).attr('href','/');
+            },
+            error: function(){
+                alert("err");
+            }
+        });
+    });
+</script>
 </html>
