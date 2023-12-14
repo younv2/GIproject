@@ -65,8 +65,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant deleteRestaurant(Long rno) {
-        return  restaurantRepository.deleteByRno(rno);
+    public void deleteRestaurant(Long rno) {
+        restaurantRepository.deleteByRno(rno);
     }
 
 

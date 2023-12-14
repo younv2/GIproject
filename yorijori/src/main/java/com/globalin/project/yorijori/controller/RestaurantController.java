@@ -83,7 +83,7 @@ public class RestaurantController {
     }
     
     //삭제
-    @DeleteMapping("/delete/{rno}")
+    @DeleteMapping ("/delete/{rno}")
     public String deletePage(@PathVariable("rno") Long rno) {
         //Long userId = (Long) session.getAttribute("1");
         restaurantService.deleteRestaurant(rno);
