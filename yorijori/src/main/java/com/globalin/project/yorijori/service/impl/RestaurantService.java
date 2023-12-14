@@ -3,7 +3,6 @@ package com.globalin.project.yorijori.service.impl;
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
 import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
-import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
@@ -32,7 +31,9 @@ public interface RestaurantService {
     void restaurantUpdate(Long rno, RestaurantRegistrationRequest req);
 
     //가게 삭제
-    void restaurantDelete(UserResponse user, Long rno);
+    Restaurant restaurantDelete(Long userId, Long rno);
+
+    void deleteRestaurant(Long rno);
 
     List<RestaurantListResponse> findAll();
 
@@ -41,5 +42,4 @@ public interface RestaurantService {
     List<RestaurantListResponse> findByName(String restaurant);
 
     Restaurant findByRestaurantName(String name);
-
 }

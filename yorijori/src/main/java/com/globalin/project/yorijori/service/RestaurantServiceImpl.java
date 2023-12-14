@@ -3,7 +3,6 @@ package com.globalin.project.yorijori.service;
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
 import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
-import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
@@ -59,9 +58,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void restaurantDelete(UserResponse user, Long rno) {
-
+    public Restaurant restaurantDelete(Long userId, Long rno) {
+        return null;
     }
+
+    @Override
+    public void deleteRestaurant(Long rno) {
+        restaurantRepository.delete(rno);
+    }
+
 
     @Override
     public List<RestaurantListResponse> findAll() {
@@ -94,8 +99,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByName(name);
     }
-
-
 }
 
 

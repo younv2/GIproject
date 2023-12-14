@@ -1,0 +1,8 @@
+diff a/yorijori/src/main/java/com/globalin/project/yorijori/repository/RestaurantRepository.java b/yorijori/src/main/java/com/globalin/project/yorijori/repository/RestaurantRepository.java	(rejected hunks)
+@@ -11,6 +11,5 @@
+ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+     //가게 검색
+     List<Restaurant> findByNameContainingOrderByRnoDesc(String name);
+-
+     List<Restaurant> findByCategoryOrderByRnoDesc(Category category);
+ }

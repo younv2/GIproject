@@ -60,10 +60,8 @@ public class RestaurantController {
     // 등록
     @PostMapping("/save")
         public String restaurantSave(HttpSession session, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest){
-        //System.out.println("restaurantRegistrationRequest =" + restaurantRegistrationRequest);
         session.setAttribute("username","123");
         String userName = (String)session.getAttribute("username");
-        //System.out.println("user =" + userName);
 
         User user = userRepository.findByUsername(userName);
         restaurantService.restaurantRegistration(user,restaurantRegistrationRequest);
@@ -85,4 +83,10 @@ public class RestaurantController {
     }
     
     //삭제
+    @GetMapping("/delete/{rno}")
+    public String deletePage(HttpSession session, @PathVariable("rno") Long rno) {
+        Long userId = (Long) session.getAttribute("1");
+        restaurantService.restaurantDelete(userId, rno);
+        return null;
+    }
 }
