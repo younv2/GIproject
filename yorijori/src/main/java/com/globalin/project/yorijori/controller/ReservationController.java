@@ -7,6 +7,7 @@ import com.globalin.project.yorijori.service.impl.RestaurantService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,11 @@ public class ReservationController {
 
 
     @PostMapping("/resister")
-    public String reservationResister(HttpSession session, @RequestParam LocalDateTime reservation_time) {
+    public String reservationResister(HttpSession session, Model model, @RequestParam LocalDateTime reservation_time) {
         String username = (String)session.getAttribute("username");
-        String restaurantName = (String)session.getAttribute("restaurantName");
+        Restaurant restaurant = (Restaurant) model.getAttribute("restaurantName");
 
         User user = userService.findByUsername(username);
-        Restaurant restaurant = restaurantService.findByRestaurantName(restaurantName);
 
         reservationService.reservationRegister(user, restaurant, reservation_time);
         return "redirect:/";
