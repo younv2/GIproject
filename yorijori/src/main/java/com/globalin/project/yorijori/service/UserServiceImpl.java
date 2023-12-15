@@ -4,6 +4,7 @@ import com.globalin.project.yorijori.dto.request.LoginRequest;
 import com.globalin.project.yorijori.dto.request.SignUpRequest;
 import com.globalin.project.yorijori.dto.request.UserModifyRequest;
 import com.globalin.project.yorijori.dto.response.UserResponse;
+import com.globalin.project.yorijori.entity.Reservation;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.UserService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
 @Service
@@ -95,6 +97,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void userDelete(LoginRequest loginRequest, String username){
+
+        User user = userRepository.findByUsername(loginRequest.getUsername());
+
+        if(loginRequest.getPassword().equals(user.getPassword()))
+            {
+            if(user.getUsername() == username)
+                userRepository.delete(user);    }
+            }
+
+    /*@Override
     public boolean userDelete(LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsername());
 
@@ -105,7 +118,7 @@ public class UserServiceImpl implements UserService {
         }
         else
             return false;
-    }
+    }*/
 
     @Override
     public User findByUsername(String username) {

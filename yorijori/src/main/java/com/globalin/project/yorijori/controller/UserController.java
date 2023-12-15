@@ -93,7 +93,17 @@ public class UserController {
         return "user/checkPassword";
     }
 
-    @ResponseBody
+
+    @DeleteMapping("/delete")
+    public String userDelete(HttpSession session){
+       userService.findByUsername(session.getId());
+        String username = (String)session.getAttribute("username");
+
+       return "user/sign";
+    }
+
+
+    /* @ResponseBody
     @DeleteMapping("/deleted")
     public boolean userDelete(@RequestBody LoginRequest loginRequest,HttpSession session){
         boolean flag = userService.userDelete(loginRequest);
@@ -105,5 +115,5 @@ public class UserController {
         }
         else
             return false;
-    }
+    }*/
 }

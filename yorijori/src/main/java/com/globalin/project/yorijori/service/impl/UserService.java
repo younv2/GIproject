@@ -6,6 +6,8 @@ import com.globalin.project.yorijori.dto.request.UserModifyRequest;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.User;
 
+import javax.servlet.http.HttpSession;
+
 public interface UserService {
 
     String login(LoginRequest loginRequest);
@@ -18,7 +20,7 @@ public interface UserService {
 
     void userModify(UserModifyRequest userModifyRequest);
 
-    boolean userDelete(LoginRequest loginRequest);
+    void userDelete(LoginRequest loginRequest, String username);
 
     User findByUsername(String username);
 }
