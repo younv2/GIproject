@@ -16,7 +16,7 @@ public interface ReservationService {
                              LocalDateTime reservationTime);
 
     //예약 삭제
-    void reservationDelete(UserResponse user, Long vno);
+    void reservationDelete(User user, Long vno);
 
     //예약 조회
     ReservationResponse reservationDetails(UserResponse user);

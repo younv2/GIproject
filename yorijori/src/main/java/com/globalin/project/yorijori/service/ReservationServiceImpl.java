@@ -7,11 +7,13 @@ import com.globalin.project.yorijori.entity.Reservation;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.ReservationRepository;
+import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +34,13 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void reservationDelete(UserResponse user, Long vno) {
+    public void reservationDelete(User user, Long vno) {
+
+        Reservation reservation = reservationRepository.findById(vno).orElseThrow(() ->
+                new RuntimeException("예약 정보없음"));
+
+        if(user==reservation.getUser())
+            reservationRepository.delete(reservation);
 
     }
 

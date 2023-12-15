@@ -8,10 +8,7 @@ import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +22,7 @@ public class ReservationController {
     private final ReservationService reservationService;
     private final UserService userService;
     private final RestaurantService restaurantService;
+
 
     @GetMapping("/")
     public String reservationPage(HttpSession session) {
@@ -49,4 +47,12 @@ public class ReservationController {
 
     
     // 삭제
+
+    @DeleteMapping("/delete/{vno}")
+    public String reservationDelete(HttpSession session, @PathVariable("vno") Long vno){
+           String username = (String)session.getAttribute("username");
+            reservationService.reservationDelete(userService.findByUsername(username), vno);
+            return "redirect:/";
+
+    }
 }
