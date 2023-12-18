@@ -106,6 +106,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByName(name);
     }
+    @Override
+    public Restaurant findById(Long id) {
+
+        return restaurantRepository.findById(id).get();
+    }
 }
 
 

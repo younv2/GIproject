@@ -38,6 +38,24 @@
 <!--        <td th:text="${detail.phone_nubmer}"></td>-->
 <!--    </tr>-->
 </table>
+<form action="/comment/register" method="post">
+    <input type="hidden" name="rno" th:value="${detail.rno}">
+    <select name="rate" id="category">
+        <option value="1">★☆☆☆☆</option>
+        <option value="2">★★☆☆☆</option>
+        <option value="3">★★★☆☆</option>
+        <option value="4">★★★★☆</option>
+        <option value="5">★★★★★</option>
+    </select><br>
+    <textarea name="review" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요."></textarea>
+    <button type="submit">등록</button>
+</form>
+
+<tr th:each="comment: ${commentList}">
+    <td th:text="${comment.nickname}"></td>
+    <td th:text="${comment.review}"></td>
+    <td th:text="${comment.rate}"></td>
+</tr>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
