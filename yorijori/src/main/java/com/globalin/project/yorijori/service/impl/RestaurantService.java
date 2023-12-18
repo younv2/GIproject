@@ -35,6 +35,8 @@ public interface RestaurantService {
 
     void deleteRestaurant(Long rno);
 
+    Restaurant findById(Long id);
+
     List<RestaurantListResponse> findAll();
 
     List<RestaurantListResponse> findByCategory(Category category);

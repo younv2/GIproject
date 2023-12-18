@@ -87,6 +87,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant findById(Long id) {
+
+        return restaurantRepository.findById(id).get();
+    }
+    @Override
     public List<RestaurantListResponse> findByName(String restaurant) {
         List<Restaurant> restaurantEntityList = restaurantRepository.findByNameContainingOrderByRnoDesc(restaurant);
         List<RestaurantListResponse> RestaurantDTO = new ArrayList<>();

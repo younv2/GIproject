@@ -1,13 +1,16 @@
 package com.globalin.project.yorijori.controller;
 
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
+import com.globalin.project.yorijori.dto.response.CommentResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.entity.Category;
+import com.globalin.project.yorijori.entity.Comment;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.repository.UserRepository;
+import com.globalin.project.yorijori.service.impl.CommentService;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +26,8 @@ import java.util.List;
 @RequestMapping("/restaurant")
 public class RestaurantController {
     private final RestaurantService restaurantService;
-    private final UserService userService;
     private final UserRepository userRepository;
-    private final RestaurantRepository restaurantRepository;
+    private final CommentService commentService;
 
 
     @GetMapping("/list/category")
@@ -48,7 +50,11 @@ public class RestaurantController {
     public String details(@PathVariable("rno")Long rno, Model model) {
         System.out.println(rno);
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
+
+        List<CommentResponse> commentList = commentService.commentDetails(rno);
+        
         model.addAttribute("detail",restaurantDetailResponse);
+        model.addAttribute("commentList",commentList);
         return "restaurant/details";
     }
     
