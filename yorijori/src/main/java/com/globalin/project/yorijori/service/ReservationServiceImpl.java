@@ -44,13 +44,11 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
-    @Override
-    public ReservationResponse reservationDetails(UserResponse user) {
-        return null;
-    }
 
     @Override
-    public ReservationResponse reservationDetails(RestaurantDetailResponse res, UserResponse user) {
-        return null;
+    public Reservation findByVno(String vno) {
+        Reservation reservation = reservationRepository.findByVno(vno);
+
+        return reservation;
     }
 }
