@@ -29,13 +29,13 @@ public class RestaurantController {
     private final UserRepository userRepository;
 
 
-    @GetMapping("/list/category")
+/*    @GetMapping("/list/category")
     public String restaurantListPage(Model model, @RequestParam Category category) {
         System.out.println(category);
         List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
         model.addAttribute("restaurantList", restaurantListResponse);
         return "restaurant/list";
-    }
+    }*/
 
     @GetMapping("/list/name")
     public String restaurantListPage(Model model, @RequestParam String name){
@@ -96,5 +96,12 @@ public class RestaurantController {
         //Long userId = (Long) session.getAttribute("1");
         restaurantService.deleteRestaurant(rno);
         return "redirect:/";
+    }
+    @GetMapping("/list/category")
+    public String restaurantListPageTest(Model model, @RequestParam Category category, @RequestParam int page) {
+        System.out.println(category);
+        List<RestaurantListResponse> restaurantList = restaurantService.findByCategoryWithPaging(category,page);
+        model.addAttribute("restaurantList", restaurantList);
+        return "restaurant/list";
     }
 }

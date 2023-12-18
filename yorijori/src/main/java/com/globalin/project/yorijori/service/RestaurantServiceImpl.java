@@ -10,6 +10,9 @@ import com.globalin.project.yorijori.repository.RestaurantRepository;
 import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -110,6 +113,19 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant findById(Long id) {
 
         return restaurantRepository.findById(id).get();
+    }
+
+    @Override
+    public List<RestaurantListResponse> findByCategoryWithPaging(Category category, int page) {
+        Pageable pageable = PageRequest.of(page,3);
+        List<Restaurant> restaurants = restaurantRepository.findByCategory(category, pageable);
+        List<RestaurantListResponse> restaurantListResponses = new ArrayList<>();
+        for (Restaurant restaurant :restaurants)
+        {
+            restaurantListResponses.add(RestaurantListResponse.toRestaurantListResponse(restaurant));
+        }
+        return restaurantListResponses;
+
     }
 }
 

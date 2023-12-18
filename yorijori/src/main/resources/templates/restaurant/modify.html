@@ -54,7 +54,7 @@
         }
         $.ajax({
             url: "/restaurant/update/"+rno,
-            type: "PUT",
+            type: "POST",
             data: JSON.stringify(data),
             contentType: "application/json; charset=UTF-8",
             // beforeSend : function(xhr){

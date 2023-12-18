@@ -7,6 +7,8 @@ import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,4 +46,6 @@ public interface RestaurantService {
     Restaurant findByRestaurantName(String name);
 
     Restaurant findById(Long id);
+
+    List<RestaurantListResponse> findByCategoryWithPaging(Category category, int page);
 }
