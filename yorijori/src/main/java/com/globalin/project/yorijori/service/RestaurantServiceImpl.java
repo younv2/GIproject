@@ -7,11 +7,13 @@ import com.globalin.project.yorijori.entity.Category;
 import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.repository.RestaurantRepository;
+import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,7 @@ import java.util.Optional;
 public class RestaurantServiceImpl implements RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void restaurantRegistration(User user, RestaurantRegistrationRequest req) {
@@ -54,9 +57,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void restaurantUpdate(Long rno, RestaurantRegistrationRequest req) {
-        Restaurant restaurantEntity = Restaurant.toUpdateEntity(req);
-        restaurantEntity.setRno(rno);
-        restaurantRepository.save(restaurantEntity);
+
+            Restaurant restaurantEntity = Restaurant.toUpdateEntity(req);
+            restaurantEntity.setRno(rno);
+            restaurantRepository.save(restaurantEntity);
+
     }
 
     @Override
@@ -66,7 +71,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void deleteRestaurant(Long rno) {
-        restaurantRepository.deleteByRno(rno);
+        restaurantRepository.deleteById(rno);
     }
 
 
