@@ -3,7 +3,6 @@ package com.globalin.project.yorijori.service.impl;
 import com.globalin.project.yorijori.dto.request.CommentRequest;
 import com.globalin.project.yorijori.dto.response.CommentResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
-import com.globalin.project.yorijori.entity.Restaurant;
 
 import java.util.List;
 
