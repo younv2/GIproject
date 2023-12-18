@@ -27,7 +27,7 @@ body {
     margin: 0 10vw;
 }
 /*main*/
-.main_container > .search {
+.main_container  .search {
     background-image: url("../img/search.png");
     background-repeat: no-repeat;
     background-size: 20px;
@@ -41,18 +41,18 @@ body {
     margin : 100px auto 50px;
     display : block;
 }
-.main_container > .search:focus {
+.main_container  .search:focus {
     border: none;
     outline: none;
 }
-.main_container > .restaurant_category {
+.main_container > .restaurant_category > form {
     margin : 0 auto;
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
     width: 84%;
 }
-.main_container > .restaurant_category > button
+.main_container > .restaurant_category > form> button
 {
     width : 14vw;
     height: 14vw;
@@ -64,7 +64,7 @@ body {
     color: white;
 }
 
-.main_container > .restaurant_category > button:hover
+.main_container > .restaurant_category >form > button:hover
 {
     cursor: pointer;
 }

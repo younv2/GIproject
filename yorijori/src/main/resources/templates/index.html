@@ -11,16 +11,22 @@
     <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <div class = "main_container">
         <!--검색-->
-        <input type="text" name="search" class="search"><br>
+        <form action="restaurant/list/name" method="get">
+            <input type="text" name="name" class="search"><br>
+        </form>
         <!--카테고리-->
+
         <div class="restaurant_category">
-            <button type="submit" name="category" value="cn">중식</button>
-            <button type="submit" name="category" value="jp">일식</button>
-            <button type="submit" name="category" value="eu">양식</button>
-            <button type="submit" name="category" value="eu">한식</button>
-            <button type="submit" name="category" value="eu">분식</button>
-            <button type="submit" name="category" value="random">랜덤</button>
+            <form action="restaurant/list/category" method="get">
+                <button type="submit" name="category" value="CN">중식</button>
+                <button type="submit" name="category" value="JP">일식</button>
+                <button type="submit" name="category" value="EU">양식</button>
+                <button type="submit" name="category" value="KR">한식</button>
+                <button type="submit" name="category" value="BS">분식</button>
+                <button type="submit" name="category" value="random">랜덤</button>
+            </form>
         </div>
+
     </div>
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>

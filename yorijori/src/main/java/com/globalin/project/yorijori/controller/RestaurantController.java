@@ -30,13 +30,14 @@ public class RestaurantController {
 
     @GetMapping("/list/category")
     public String restaurantListPage(Model model, @RequestParam Category category) {
+        System.out.println(category);
         List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
         model.addAttribute("restaurantList", restaurantListResponse);
         return "restaurant/list";
     }
 
-    @GetMapping("/list/name/{name}")
-    public String restaurantListPage(Model model, @PathVariable("name") String name){
+    @GetMapping("/list/name")
+    public String restaurantListPage(Model model, @RequestParam String name){
         System.out.println(name);
         List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(name);
         model.addAttribute("restaurantList", RestaurantListResponse);
