@@ -54,14 +54,16 @@ public class RestaurantController {
     
     // 수정
     @GetMapping("/register")
-    public String registerPage() {
+    public String registerPage(HttpSession session) {
+        if(session.getAttribute("username") == null)
+            return "/user/sign";
         return "restaurant/register";
     }
 
     // 등록
     @PostMapping("/save")
-        public String restaurantSave(HttpSession session, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest){
-        session.setAttribute("username","123");
+    public String restaurantSave(HttpSession session, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest){
+
         String userName = (String)session.getAttribute("username");
 
         User user = userRepository.findByUsername(userName);
@@ -70,7 +72,9 @@ public class RestaurantController {
     }
 
     @GetMapping("/modify/{rno}")
-    public String modifyPage(@PathVariable Long rno, Model model) {
+    public String modifyPage(@PathVariable Long rno, Model model,HttpSession session) {
+        if(session.getAttribute("username") == null)
+            return "/user/sign";
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
         model.addAttribute("restaurantModify", restaurantDetailResponse);
         return "restaurant/modify";
