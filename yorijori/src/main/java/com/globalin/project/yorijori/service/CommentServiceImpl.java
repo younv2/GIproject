@@ -24,15 +24,13 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments =  commentRepository.findByRestaurant(restaurant);
         List<CommentResponse> commentsResponseList = new ArrayList<>();
 
-        CommentResponse temp = new CommentResponse();
         for (Comment comment: comments) {
-            System.out.println(comment.getUser().getNickname());
+            CommentResponse temp = new CommentResponse();
             temp.setNickname(comment.getUser().getNickname());
             temp.setRate(comment.getRate());
             temp.setReview(comment.getReview());
             commentsResponseList.add(temp);
         }
-
         return commentsResponseList;
     }
 
