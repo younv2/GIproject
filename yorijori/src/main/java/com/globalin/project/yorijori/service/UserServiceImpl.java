@@ -40,10 +40,10 @@ public class UserServiceImpl implements UserService {
         String id = loginRequest.getUsername();
         User user = userRepository.findByUsername(id);
 
-        if(user == null){
+        if (user == null) {
             System.out.println("유저가 존재하지 않음");
             return null;
-        }else {
+        } else {
             if (loginRequest.getPassword().equals(user.getPassword())) {
                 System.out.println("비밀번호 정상");
                 return user.getUsername();
@@ -68,11 +68,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
     }
+
     @Override
-    public boolean checkId(String id)
-    {
+    public boolean checkId(String id) {
         User user = userRepository.findByUsername(id);
-        if(user!=null)
+        if (user != null)
             return false;
         else
             return true;
@@ -96,35 +96,33 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public void userDelete(LoginRequest loginRequest, String username){
+/*    @Override
+    public void userDelete(LoginRequest loginRequest) {
 
         User user = userRepository.findByUsername(loginRequest.getUsername());
 
-        if(loginRequest.getPassword().equals(user.getPassword()))
-            {
-            if(user.getUsername() == username)
-                userRepository.delete(user);    }
-            }
+        if (loginRequest.getPassword().equals(user.getPassword())) {
+            userRepository.delete(user);
+        }*/
 
-    /*@Override
+    @Override
     public boolean userDelete(LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsername());
 
-        if(loginRequest.getPassword().equals(user.getPassword()))
-        {
+        if (loginRequest.getPassword().equals(user.getPassword())) {
             userRepository.delete(user);
             return true;
-        }
-        else
+        } else
             return false;
-    }*/
+    }
+
+
+
+
 
     @Override
     public User findByUsername(String username) {
 
-        User user = userRepository.findByUsername(username);
-
-        return user;
+        return userRepository.findByUsername(username);
     }
 }

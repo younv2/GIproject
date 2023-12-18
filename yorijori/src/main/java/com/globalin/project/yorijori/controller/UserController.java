@@ -7,6 +7,7 @@ import com.globalin.project.yorijori.dto.response.CommentResponse;
 import com.globalin.project.yorijori.dto.response.ReservationResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Reservation;
+import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.service.impl.ReservationService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
@@ -111,17 +112,17 @@ public class UserController {
     }
 
 
+/*    @DeleteMapping("/delete")
+    public String userDelete(LoginRequest loginRequest){
+
+        userService.userDelete(loginRequest);
+
+       return "redirect:/user/sign";
+    }*/
+
+
+    @ResponseBody
     @DeleteMapping("/delete")
-    public String userDelete(HttpSession session){
-       userService.findByUsername(session.getId());
-        String username = (String)session.getAttribute("username");
-
-       return "user/sign";
-    }
-
-
-    /* @ResponseBody
-    @DeleteMapping("/deleted")
     public boolean userDelete(@RequestBody LoginRequest loginRequest,HttpSession session){
         boolean flag = userService.userDelete(loginRequest);
         if(flag)
@@ -132,5 +133,5 @@ public class UserController {
         }
         else
             return false;
-    }*/
+    }
 }

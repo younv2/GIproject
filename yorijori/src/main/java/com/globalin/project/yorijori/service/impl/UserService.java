@@ -20,7 +20,7 @@ public interface UserService {
 
     void userModify(UserModifyRequest userModifyRequest);
 
-    void userDelete(LoginRequest loginRequest, String username);
+    boolean userDelete(LoginRequest loginRequest);
 
     User findByUsername(String username);
 }

@@ -25,6 +25,11 @@
                 <li>이메일 <span th:text="${userInfo.email}"></span></li>
                 <li>전화번호 <span th:text="${userInfo.phone_number}"></span></li>
             </ul>
+            <h3>예약정보</h3>
+            <ul th:each="reservation: ${reservationList}">
+                <li th:text="${reservation.restaurant.getName()}" />
+                <li th:text="${reservation.reservation_time}" />
+            </ul>
         </div>
     </div>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
