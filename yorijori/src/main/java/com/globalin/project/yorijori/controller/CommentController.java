@@ -6,6 +6,7 @@ import com.globalin.project.yorijori.service.impl.RestaurantService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,6 +38,7 @@ public class CommentController {
         return "redirect:"+ referer;
     }
     //삭제
+    @DeleteMapping("/delete")
     public String delete(HttpServletRequest request, HttpSession session)
     {
 
