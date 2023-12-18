@@ -46,8 +46,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     @Override
-    public Reservation findByVno(String vno) {
-        Reservation reservation = reservationRepository.findByVno(vno);
+    public Reservation findByVno(Long vno) {
+        Reservation reservation = reservationRepository.findById(vno).get();
 
         return reservation;
     }

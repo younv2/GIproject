@@ -3,21 +3,28 @@ package com.globalin.project.yorijori.controller;
 import com.globalin.project.yorijori.dto.request.LoginRequest;
 import com.globalin.project.yorijori.dto.request.SignUpRequest;
 import com.globalin.project.yorijori.dto.request.UserModifyRequest;
+import com.globalin.project.yorijori.dto.response.CommentResponse;
+import com.globalin.project.yorijori.dto.response.ReservationResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
+import com.globalin.project.yorijori.entity.Reservation;
+import com.globalin.project.yorijori.service.impl.ReservationService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-
+    private final ReservationService reservationService;
     @GetMapping("/sign") // x
     public String signPage() {
         return "user/sign";
@@ -55,8 +62,18 @@ public class UserController {
     public String userInfo(HttpSession session, Model model) {
         if(session.getAttribute("username") == null)
             return "user/sign";
+        List<Reservation> reservationList = userService.findByUsername((String)session.getAttribute("username")).getReservations();
+        List<ReservationResponse> reservationResponseList = new ArrayList<>();
+        for (Reservation reservation: reservationList) {
+            ReservationResponse temp = new ReservationResponse();
+            temp.setRestaurant(reservation.getRestaurant());
+            temp.setReservation_time(temp.getReservation_time());
+            reservationResponseList.add(temp);
+        }
+
         UserResponse userResponse = userService.info((String)session.getAttribute("username"));
         model.addAttribute("userInfo",userResponse);
+        model.addAttribute("reservationList",reservationResponseList);
         return "user/userInfo";
     }
 

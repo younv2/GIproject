@@ -29,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
             temp.setNickname(comment.getUser().getNickname());
             temp.setRate(comment.getRate());
             temp.setReview(comment.getReview());
+            temp.setCno(comment.getCno());
             commentsResponseList.add(temp);
         }
         return commentsResponseList;

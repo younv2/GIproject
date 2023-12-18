@@ -41,6 +41,7 @@ public class CommentController {
     @DeleteMapping("/delete")
     public String delete(HttpServletRequest request, HttpSession session)
     {
+        session.getAttribute("username");
 
         String referer = request.getHeader("Referer");
         return "redirect:"+ referer;

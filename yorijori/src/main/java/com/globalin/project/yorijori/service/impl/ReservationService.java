@@ -25,5 +25,5 @@ public interface ReservationService {
     ReservationResponse reservationDetails(RestaurantDetailResponse res,
                                            UserResponse user);*/
 
-    Reservation findByVno(String vno);
+    Reservation findByVno(Long vno);
 }

@@ -58,7 +58,11 @@
     <td th:text="${comment.nickname}"></td>
     <td th:text="${comment.review}"></td>
     <td th:text="${comment.rate}"></td>
-    <a href="/comment/delete">x</a>
+    <form action="/comment/delete" method="post">
+        <input type="hidden" name="cno" th:value="${comment.cno}">
+        <button type="submit">x</button>
+    </form>
+
     <br>
 </tr>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
