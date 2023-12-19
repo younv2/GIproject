@@ -13,6 +13,7 @@
             <ul>
                 <li><a href="/user/myPage">마이 페이지</a> </li>
                 <li><a href="/user/modify"> 회원 정보 수정</a></li>
+                <li><a onclick="test()">관리자 등록</a></li>
                 <li><a href="/user/checkPassword">회원 탈퇴</a></li>
             </ul>
         </div>
@@ -35,4 +36,20 @@
     </div>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
+<script>
+    function test()
+    {
+        $.ajax({
+            url: "/user/manager",
+            type: "PUT",
+            success: function(data){
+                alert("관리자 권한을 받았습니다.");
+                $(location).attr('href','/');
+            },
+            error: function(){
+                alert("err");
+            }
+        });
+    }
+</script>
 </html>

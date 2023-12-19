@@ -13,7 +13,8 @@
     <ul>
         <li><a th:if="${#strings.isEmpty(session.username)}" href="/user/sign">로그인</a></li>
         <li><a th:unless="${#strings.isEmpty(session.username)}" href="#" onclick="javascript:page_move('/user/logout');">로그아웃</a></li>
-        <li><a href="/user/myPage">마이페이지</a></li>
+        <li><a th:unless="${#strings.isEmpty(session.username)}" href="/user/myPage">마이페이지</a></li>
+        <li><a th:if="${session.role=='MANAGER'}" href="/user/myPage">가게 등록</a></li>
         <li th:unless="${#strings.isEmpty(session.username)}"><span th:text="${session.username}"></span>님 반갑습니다</li>
     </ul>
 
