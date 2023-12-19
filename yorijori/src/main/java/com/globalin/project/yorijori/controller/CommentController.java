@@ -24,25 +24,24 @@ public class CommentController {
     @PostMapping("/register")
     public String register(HttpServletRequest request, HttpSession session, CommentRequest commentRequest)
     {
-
-        CommentRequest req = commentRequest;
+        String referer = request.getHeader("Referer");
         if((String)session.getAttribute("username") == null)
-        {
-            session.setAttribute("username","asd");
-        }
+            return "redirect:"+ referer;
+        CommentRequest req = commentRequest;
+
         req.setUser(userService.findByUsername((String)session.getAttribute("username")));
         req.setRestaurant(restaurantService.findById(commentRequest.getRno()));
 
         commentService.commentRegister(req);
-        String referer = request.getHeader("Referer");
+
         return "redirect:"+ referer;
     }
     //삭제
-    @DeleteMapping("/delete")
-    public String delete(HttpServletRequest request, HttpSession session)
+    @PostMapping("/delete")
+    public String delete(HttpServletRequest request, HttpSession session, Long cno)
     {
         session.getAttribute("username");
-
+        System.out.println(cno);
         String referer = request.getHeader("Referer");
         return "redirect:"+ referer;
     }

@@ -12,9 +12,6 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cno;
-    private Long mno;
-    private Long rno;
-
     @ManyToOne
     private User user;
 

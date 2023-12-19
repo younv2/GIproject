@@ -50,7 +50,8 @@
         <option value="4">★★★★☆</option>
         <option value="5">★★★★★</option>
     </select><br>
-    <textarea name="review" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요."></textarea>
+    <textarea name="review" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." th:unless="${#strings.isEmpty(session.username)}"></textarea>
+    <textarea name="review" id="" cols="30" rows="10" placeholder="로그인을 해주세요" th:if="${#strings.isEmpty(session.username)}" readonly="true"></textarea>
     <button type="submit">등록</button>
 </form>
 
