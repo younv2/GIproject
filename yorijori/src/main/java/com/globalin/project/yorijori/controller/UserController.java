@@ -7,6 +7,7 @@ import com.globalin.project.yorijori.dto.response.CommentResponse;
 import com.globalin.project.yorijori.dto.response.ReservationResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Reservation;
+import com.globalin.project.yorijori.entity.Role;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.service.impl.ReservationService;
 import com.globalin.project.yorijori.service.impl.UserService;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +36,11 @@ public class UserController {
     @PostMapping("/login") // 로그인 기능 구현
     public String login(@RequestBody LoginRequest request,
                         HttpSession session) {
-        String username = userService.login(request);
+        String username = userService.login(request).getUsername();
+        Role role = userService.login(request).getRole();
         if(username!=null)
         {
+            session.setAttribute("role",role);
             session.setAttribute("username", username);
             System.out.println("로그인 완료");
             return "redirect:/";
@@ -77,7 +81,13 @@ public class UserController {
         model.addAttribute("reservationList",reservationResponseList);
         return "user/userInfo";
     }
-
+    @PutMapping("/manager")
+    @ResponseBody
+    public void setManager(HttpServletRequest servletRequest,HttpSession session)
+    {
+        userService.userModify(Role.MANAGER,(String)session.getAttribute("username"));
+        session.setAttribute("role",Role.MANAGER);
+    }
     @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage(HttpSession session, Model model) {
         if(session.getAttribute("username") == null)

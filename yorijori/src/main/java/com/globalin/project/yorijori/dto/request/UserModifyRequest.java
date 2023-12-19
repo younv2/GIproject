@@ -1,5 +1,6 @@
 package com.globalin.project.yorijori.dto.request;
 
+import com.globalin.project.yorijori.entity.Role;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,6 @@ public class UserModifyRequest {
     private String username;
     private String email;
     private String phone_number;
-    private String role;
+    private Role role;
 
 }
