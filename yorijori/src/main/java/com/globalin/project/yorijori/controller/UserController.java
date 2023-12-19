@@ -63,18 +63,20 @@ public class UserController {
     public String userInfo(HttpSession session, Model model) {
         if(session.getAttribute("username") == null)
             return "user/sign";
-        List<Reservation> reservationList = userService.findByUsername((String)session.getAttribute("username")).getReservations();
+        User user = userService.findByUsername((String)session.getAttribute("username"));
+        List<Reservation> reservationList = user.getReservations();
+        System.out.println(reservationList.get(0).getReservation_time());
         List<ReservationResponse> reservationResponseList = new ArrayList<>();
         for (Reservation reservation: reservationList) {
             ReservationResponse temp = new ReservationResponse();
-            temp.setRestaurant(reservation.getRestaurant());
-            temp.setReservation_time(temp.getReservation_time());
+            temp.setName(reservation.getRestaurant().getName());
+            temp.setReservation_time(reservation.getReservation_time());
             reservationResponseList.add(temp);
         }
 
         UserResponse userResponse = userService.info((String)session.getAttribute("username"));
         model.addAttribute("userInfo",userResponse);
-        model.addAttribute("reservationList",reservationResponseList);
+        model.addAttribute("reservationList",reservationList);
         return "user/userInfo";
     }
 
