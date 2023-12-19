@@ -11,6 +11,7 @@
 </head>
 <body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+        <form method="POST" action="/restaurant/save" enctype="multipart/form-data">
             가게이름:<input type="text" name="name" id="name"> <br>
             주소:<input type="text" name="address" id="address"> <br>
             사업자번호:<input type="text" name="business_number" id="business_number"> <br>
@@ -29,52 +30,56 @@
             가게 설명 : <br>
             <textarea type="text" name="description" id="description" cols="30" rows="10"></textarea> <br>
             썸네일 사진: <input type="file" name="thumbnail" id="thumbnail"> <br>
-          <button id="restaurant_registration">레스토랑등록</button>
+          <button type="submit" id="restaurant_registration">레스토랑등록</button>
+        </form>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
-<script>
-    $("#restaurant_registration").click(function () {
+<!--<script>-->
+<!--    const formData = new FormData();-->
 
-        const name = $("#name").val();
-        const address = $("#address").val();
-        const business_number = $("#business_number").val();
-        const phone_number = $("#phone_number").val();
-        const duplicate_reservation = $("#duplicate_reservation").val();
-        const category = $("#category").val();
-        const start_time = $("#start_time").val();
-        const end_time = $("#end_time").val();
-        const description = $("#description").val();
-        const thumbnail = $("#thumbnail").val();
+<!--    $("#restaurant_registration").click(function () {-->
 
-        const data = {
-            'name': name,
-            'address': address,
-            'business_number': business_number,
-            'phone_number': phone_number,
-            'duplicate_reservation': duplicate_reservation,
-            'category': category,
-            'start_time': start_time,
-            'end_time': end_time,
-            'description': description,
-            'thumbnail' : thumbnail
-        }
-        $.ajax({
-            url: "/restaurant/save",
-            type: "POST",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=UTF-8",
-            // beforeSend : function(xhr){
-            //     xhr.setRequestHeader(header, token);
-            // },
-            success: function(data){
-                alert("등록되었습니다.");
-                $(location).attr('href','/');
-            },
-            error: function(){
-                alert("err");
-            }
-        });
-    });
-</script>
+<!--        const name = $("#name").val();-->
+<!--        const address = $("#address").val();-->
+<!--        const business_number = $("#business_number").val();-->
+<!--        const phone_number = $("#phone_number").val();-->
+<!--        const duplicate_reservation = $("#duplicate_reservation").val();-->
+<!--        const category = $("#category").val();-->
+<!--        const start_time = $("#start_time").val();-->
+<!--        const end_time = $("#end_time").val();-->
+<!--        const description = $("#description").val();-->
+<!--        const thumbnail = $("#thumbnail")[0].files[0];-->
+
+<!--            formData.append("name", name);-->
+<!--            formData.append("address", address);-->
+<!--            formData.append("business_number", business_number);-->
+<!--            formData.append("phone_number", phone_number);-->
+<!--            formData.append("duplicate_reservation", duplicate_reservation);-->
+<!--            formData.append("category", category);-->
+<!--            formData.append("start_time", start_time);-->
+<!--            formData.append("end_time", end_time);-->
+<!--            formData.append("description", description);-->
+<!--            formData.append("thumbnail", thumbnail);-->
+
+
+<!--        $.ajax({-->
+<!--            url: "/restaurant/save",-->
+<!--            type: "POST",-->
+<!--            data: formData,-->
+<!--            contentType: false,-->
+<!--            // beforeSend : function(xhr){-->
+<!--            //     xhr.setRequestHeader(header, token);-->
+<!--            // },-->
+<!--            processData : false,-->
+<!--            success: function(data){-->
+<!--                alert("등록되었습니다.");-->
+<!--                $(location).attr('href','/');-->
+<!--            },-->
+<!--            error: function(){-->
+<!--                alert("err");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </html>

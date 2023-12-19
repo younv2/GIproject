@@ -16,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,13 +68,13 @@ public class RestaurantController {
     }
 
     // 등록
-    @PostMapping("/save")
-    public String restaurantSave(HttpSession session, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest) throws IOException {
-
+    @PostMapping(value ="/save", consumes = "multipart/form-data")
+    public String restaurantSave(HttpSession session,@RequestPart(required = false) MultipartFile thumbnail, RestaurantRegistrationRequest restaurantRegistrationRequest) throws IOException {
+        System.out.println("1");
         String userName = (String)session.getAttribute("username");
 
         User user = userRepository.findByUsername(userName);
-        restaurantService.restaurantRegistration(user,restaurantRegistrationRequest);
+        restaurantService.restaurantRegistration(user,restaurantRegistrationRequest, thumbnail);
         return "redirect:/";
     }
 

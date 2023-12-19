@@ -35,7 +35,6 @@ public class Restaurant {
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private String duplicate_reservation;
-    private int fileAttached; // 1 or 0
 
     @OneToOne
     private User user;
@@ -55,10 +54,8 @@ public class Restaurant {
         restaurantEntity.setStart_time(restaurantRegistrationRequest.getStart_time());
         restaurantEntity.setEnd_time(restaurantRegistrationRequest.getEnd_time());
         restaurantEntity.setBusiness_number(restaurantRegistrationRequest.getBusiness_number());
-        restaurantEntity.setThumbnail(restaurantRegistrationRequest.getThumbnail());
         restaurantEntity.setPhone_number(restaurantRegistrationRequest.getPhone_number());
         restaurantEntity.setDuplicate_reservation(restaurantRegistrationRequest.getDuplicate_reservation());
-        restaurantEntity.setFileAttached(0);
 
         return restaurantEntity;
     }
@@ -74,7 +71,6 @@ public class Restaurant {
         restaurantEntity.setStart_time(restaurantRegistrationRequest.getStart_time());
         restaurantEntity.setEnd_time(restaurantRegistrationRequest.getEnd_time());
         restaurantEntity.setBusiness_number(restaurantRegistrationRequest.getBusiness_number());
-        restaurantEntity.setThumbnail(restaurantRegistrationRequest.getThumbnail());
         restaurantEntity.setPhone_number(restaurantRegistrationRequest.getPhone_number());
         restaurantEntity.setDuplicate_reservation(restaurantRegistrationRequest.getDuplicate_reservation());
 

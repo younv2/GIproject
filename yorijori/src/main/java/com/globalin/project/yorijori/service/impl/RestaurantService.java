@@ -10,6 +10,7 @@ import com.globalin.project.yorijori.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 public interface RestaurantService {
 
     //가게 등록
-    void restaurantRegistration(User user, RestaurantRegistrationRequest req) throws IOException;
+    void restaurantRegistration(User user, RestaurantRegistrationRequest req, MultipartFile thumbnail) throws IOException;
 
     //가게 상세페이지
     RestaurantDetailResponse restaurantDetail(Long rno);

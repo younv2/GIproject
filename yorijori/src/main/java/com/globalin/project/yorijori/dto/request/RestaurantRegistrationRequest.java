@@ -4,6 +4,7 @@ import com.globalin.project.yorijori.entity.Category;
 
 import com.globalin.project.yorijori.entity.Restaurant;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
@@ -22,26 +23,19 @@ public class RestaurantRegistrationRequest {
     private String phone_number;
     private Category category;
     private String description;
-    private String thumbnail;
-    private MultipartFile thumbnailFile;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime start_time;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end_time;
     private String duplicate_reservation;
-
-
-
-    private String originalFileName; // 원본 파일 이름
-    private String storedFileName; // 서버 저장용 파일 이름
-    private int fileAttached; //파일 첨부 여부(첨부 1, 미첨부 0)
 
     public static RestaurantRegistrationRequest toRestaurantDTO(Restaurant restaurantEntity){
         RestaurantRegistrationRequest restaurantDTO = new RestaurantRegistrationRequest();
         restaurantDTO.setRno(restaurantEntity.getRno());
-        restaurantDTO.setName(restaurantDTO.getName());
+        restaurantDTO.setName(restaurantEntity.getName());
         restaurantDTO.setAddress(restaurantEntity.getAddress());
         restaurantDTO.setCategory(restaurantEntity.getCategory());
         restaurantDTO.setDescription(restaurantEntity.getDescription());
-        restaurantDTO.setThumbnail(restaurantEntity.getThumbnail());
         restaurantDTO.setStart_time(restaurantEntity.getStart_time());
         restaurantDTO.setEnd_time(restaurantEntity.getEnd_time());
         restaurantDTO.setDuplicate_reservation(restaurantEntity.getDuplicate_reservation());
