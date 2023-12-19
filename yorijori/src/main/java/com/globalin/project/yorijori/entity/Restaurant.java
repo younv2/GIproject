@@ -3,10 +3,12 @@ package com.globalin.project.yorijori.entity;
 import com.globalin.project.yorijori.dto.request.RestaurantRegistrationRequest;
 import com.globalin.project.yorijori.dto.response.RestaurantDetailResponse;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.LongBinaryOperator;
 
 @Entity
 @Getter
@@ -33,6 +35,7 @@ public class Restaurant {
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private String duplicate_reservation;
+    private int fileAttached; // 1 or 0
 
     @OneToOne
     private User user;
@@ -55,6 +58,7 @@ public class Restaurant {
         restaurantEntity.setThumbnail(restaurantRegistrationRequest.getThumbnail());
         restaurantEntity.setPhone_number(restaurantRegistrationRequest.getPhone_number());
         restaurantEntity.setDuplicate_reservation(restaurantRegistrationRequest.getDuplicate_reservation());
+        restaurantEntity.setFileAttached(0);
 
         return restaurantEntity;
     }

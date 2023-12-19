@@ -14,9 +14,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,10 +32,34 @@ public class RestaurantServiceImpl implements RestaurantService {
     private final UserRepository userRepository;
 
     @Override
-    public void restaurantRegistration(User user, RestaurantRegistrationRequest req) {
-        Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
-        restaurantEntity.setUser(user);
-        restaurantRepository.save(restaurantEntity);
+    public void restaurantRegistration(User user, RestaurantRegistrationRequest req) throws IOException {
+
+        //파일 첨부 여부에 따라 로직 분리
+        if(req.getThumbnail().isEmpty()) {
+            //첨부 파일 없음.
+            Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
+            restaurantEntity.setUser(user);
+            restaurantRepository.save(restaurantEntity);
+        }else {
+            //첨부 파일 있음.
+            /*
+            1. DTO에 담긴 파일을 꺼냄
+            2. 파일의 이름 가져옴
+            3.서버 저장용 이름을 만듦
+            4. 저장 경로 설정
+            5. 해당 경로에 파일 저장
+            6. 레스토랑에 해당 데이터 save 처리
+            7. 레스토랑 파일에 해당 데이터 save처리
+             */
+
+            MultipartFile thumbnailImage = req.getThumbnailFile();//1
+            String originalFileName = thumbnailImage.getOriginalFilename(); //2
+            String storedFileName = System.currentTimeMillis() + "_" + originalFileName; // 3.
+            String savePath = "C:/thumbnail/" + storedFileName;
+            thumbnailImage.transferTo(new File(savePath));
+        }
+
+
     }
 
     @Override

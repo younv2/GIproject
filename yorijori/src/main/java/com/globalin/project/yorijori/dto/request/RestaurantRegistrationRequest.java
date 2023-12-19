@@ -4,6 +4,7 @@ import com.globalin.project.yorijori.entity.Category;
 
 import com.globalin.project.yorijori.entity.Restaurant;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -22,9 +23,16 @@ public class RestaurantRegistrationRequest {
     private Category category;
     private String description;
     private String thumbnail;
+    private MultipartFile thumbnailFile;
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private String duplicate_reservation;
+
+
+
+    private String originalFileName; // 원본 파일 이름
+    private String storedFileName; // 서버 저장용 파일 이름
+    private int fileAttached; //파일 첨부 여부(첨부 1, 미첨부 0)
 
     public static RestaurantRegistrationRequest toRestaurantDTO(Restaurant restaurantEntity){
         RestaurantRegistrationRequest restaurantDTO = new RestaurantRegistrationRequest();
