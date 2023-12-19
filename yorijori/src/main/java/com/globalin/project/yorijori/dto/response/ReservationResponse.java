@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class ReservationResponse {
 
-    private Restaurant restaurant;
+    private String name;
     private LocalDateTime reservation_time;
 
 }

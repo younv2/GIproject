@@ -6,6 +6,7 @@ import com.globalin.project.yorijori.service.impl.ReservationService;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import com.globalin.project.yorijori.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,21 +25,23 @@ public class ReservationController {
     private final RestaurantService restaurantService;
 
 
-    @GetMapping("/")
-    public String reservationPage(HttpSession session) {
+    @GetMapping("/{rno}")
+    public String reservationPage(HttpSession session, @PathVariable Long rno, Model model) {
         if(session.getAttribute("username") == null)
             return "user/sign";
-        else
+        else{
+            model.addAttribute("rno", rno);
             return "user/reservation";
+        }
     }
 
 
-    @PostMapping("/resister")
-    public String reservationResister(HttpSession session, Model model, @RequestParam LocalDateTime reservation_time) {
+    @PostMapping("/register/{rno}")
+    public String reservationResister(HttpSession session,@PathVariable Long rno,@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime reservation_time) {
         String username = (String)session.getAttribute("username");
-        Restaurant restaurant = (Restaurant) model.getAttribute("restaurantName");
-
+        Restaurant restaurant = restaurantService.findById(rno);
         User user = userService.findByUsername(username);
+
 
         reservationService.reservationRegister(user, restaurant, reservation_time);
         return "redirect:/";

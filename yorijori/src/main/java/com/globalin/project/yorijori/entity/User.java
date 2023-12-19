@@ -29,10 +29,10 @@ public class User {
     private LocalDateTime created_at;
 
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Reservation> reservations;
 
     @OneToOne

@@ -6,8 +6,15 @@
     <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
 </head>
 <body>
+
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 예약 페이지
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<br>
+<form th:action="@{|/reservation/register/${rno}|}" method="post">
+    <label for="reservation_time">짜장두그릇</label>
+    예약시간 : <input type="datetime-local" name="reservation_time" id="reservation_time">
+    <button type="submit" >예약등록</button><br>
+</form>
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 </html>
