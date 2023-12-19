@@ -40,7 +40,8 @@ public class UserController {
         Role role = userService.login(request).getRole();
         if(username!=null)
         {
-            session.setAttribute("role",role);
+            System.out.println(role);
+            session.setAttribute("role",role.name());
             session.setAttribute("username", username);
             System.out.println("로그인 완료");
             return "redirect:/";
@@ -86,7 +87,7 @@ public class UserController {
     public void setManager(HttpServletRequest servletRequest,HttpSession session)
     {
         userService.userModify(Role.MANAGER,(String)session.getAttribute("username"));
-        session.setAttribute("role",Role.MANAGER);
+        session.setAttribute("role",Role.MANAGER.name());
     }
     @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage(HttpSession session, Model model) {
