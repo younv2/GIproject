@@ -8,35 +8,20 @@
 <body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <h2>Restaurant List Page</h2>
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <th>썸네일</th>-->
-<!--            <th>레스토랑 명</th>-->
-<!--            <th>상 세</th>-->
-<!--            <th>카테고리</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="restaurant: ${restaurantListResponse}">-->
-<!--            &lt;!&ndash;/*@thymesVar id="name" type=""*/&ndash;&gt;-->
-<!--            <td th:text="${restaurant.thumbnail}"></td>-->
-<!--            <td th:text="${restaurant.name}"></td>-->
-<!--            <td th:text="${restaurant.description}"></td>-->
-<!--            <td th:text="${restaurant.category}"></td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<table>
-    <tr>
-        <th>썸네일</th>
-        <th>가게이름</th>
-        <th>상세</th>
-        <th>카테고리</th>
-    </tr>
-    <tr th:each="restaurant: ${restaurantList}">
-        <td th:text="${restaurant.thumbnail}"></td>
-        <td th:text="${restaurant.name}"></a></td>
-        <td th:text="${restaurant.description}"></td>
-        <td th:text="${restaurant.category}"></td>
-    </tr>
-</table>
+    <div>
+        <span>썸네일</span>
+        <span>가게이름</span>
+        <span>상세</span>
+        <span>카테고리</span>
+    </div>
+    <div th:each="restaurant: ${restaurantList}">
+        <a th:href="@{/restaurant/details/{rno}(rno = ${restaurant.rno})}">
+        <span th:text="${restaurant.thumbnail}"></span>
+        <span th:text="${restaurant.name}"></span>
+        <span th:text="${restaurant.description}"></span>
+        <span th:text="${restaurant.category}"></span>
+        </a>
+    </div>
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
