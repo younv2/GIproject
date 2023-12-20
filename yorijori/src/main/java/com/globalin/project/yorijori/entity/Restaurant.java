@@ -32,6 +32,7 @@ public class Restaurant {
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
     private String thumbnail;
+    private String thumbnail_path;
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private String duplicate_reservation;

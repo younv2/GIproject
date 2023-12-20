@@ -11,6 +11,8 @@ import com.globalin.project.yorijori.repository.UserRepository;
 import com.globalin.project.yorijori.service.impl.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,13 +42,22 @@ public class RestaurantServiceImpl implements RestaurantService {
         //첨부 파일 없음.
         Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
         if (!thumbnail.isEmpty()) {
+
                 String uploadDir = "C:/thumbnail";
+                //String uploadDir = "src/main/resources/static/thumbnail";
+
                 String originalFileName = thumbnail.getOriginalFilename();
+
                 String filePath = uploadDir + "/" + originalFileName;
+                //String filePathForPrj = prjUploadDir +  "/" + originalFileName;
+
                 restaurantEntity.setThumbnail(filePath);
+
                 //파일 저장
                 File dest = new File(filePath);
+
                 thumbnail.transferTo(dest);
+                //thumbnail.transferTo(dest);
 
         }else {
             throw new FileUploadException("업로드할 파일이 없습니다.");
