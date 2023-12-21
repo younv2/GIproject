@@ -25,14 +25,13 @@ public class CommentController {
     @PostMapping("/register")
     public String register(HttpServletRequest request, HttpSession session, CommentRequest commentRequest) {
         String referer = request.getHeader("Referer");
-        if ((String) session.getAttribute("username") == null)
+        if (session.getAttribute("username") == null)
             return "redirect:" + referer;
-        CommentRequest req = commentRequest;
 
-        req.setUser(userService.findByUsername((String) session.getAttribute("username")));
-        req.setRestaurant(restaurantService.findById(commentRequest.getRno()));
-
-        commentService.commentRegister(req);
+        commentRequest.setUser(userService.findByUsername((String) session.getAttribute("username")));
+        commentRequest.setRestaurant(restaurantService.findById(commentRequest.getRno()));
+        
+        commentService.commentRegister(commentRequest);
 
         return "redirect:" + referer;
     }
