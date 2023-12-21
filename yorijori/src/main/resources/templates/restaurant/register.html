@@ -3,83 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>save</title>
-    <link rel="stylesheet" href="../css/sign.css">
-
+    <link rel="stylesheet" href="/css/userInfo.css">
     <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
-    <link rel="stylesheet" href="/css/sign.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
         <form method="POST" action="/restaurant/save" enctype="multipart/form-data">
-            가게이름:<input type="text" name="name" id="name"> <br>
-            주소:<input type="text" name="address" id="address"> <br>
-            사업자번호:<input type="text" name="business_number" id="business_number"> <br>
-            가게번호:<input type="text" name="phone_number" id="phone_number"> <br>
-            테이블 수 : <input type="text" name="duplicate_reservation" id="duplicate_reservation"> <br>
-            <label for="category">카테고리 선택</label>
-            <select name="category" id="category">
-                <option value="KR">한식</option>
-                <option value="CN">중식</option>
-                <option value="JP">일식</option>
-                <option value="EU">양식</option>
-                <option value="BS">분식</option>
-            </select><br>
-            영업시작: <input type="datetime-local" name="start_time" id="start_time"> <br>
-            영업종료: <input type="datetime-local" name="end_time" id="end_time"> <br>
-            가게 설명 : <br>
-            <textarea type="text" name="description" id="description" cols="30" rows="10"></textarea> <br>
-            썸네일 사진: <input type="file" name="thumbnail" id="thumbnail"> <br>
+            <table>
+                <tr>
+                    <th>가게이름</th>
+                    <td><input type="text" name="name" id="name"></td>
+                </tr>
+                <tr>
+                    <th>주소</th>
+                    <td><input type="text" name="address" id="address"></td>
+                </tr>
+                <tr>
+                    <th>사업자번호</th>
+                    <td><input type="text" name="business_number" id="business_number"></td>
+                </tr>
+                <tr>
+                    <th>가게번호</th>
+                    <td><input type="text" name="phone_number" id="phone_number"></td>
+                </tr>
+                <tr>
+                    <th>테이블 수</th>
+                    <td><input type="text" name="duplicate_reservation" id="duplicate_reservation"></td>
+                </tr>
+                <tr>
+                    <th>카테고리 선택</th>
+                    <td><select name="category" id="category">
+                        <option value="KR">한식</option>
+                        <option value="CN">중식</option>
+                        <option value="JP">일식</option>
+                        <option value="EU">양식</option>
+                        <option value="BS">분식</option>
+                    </select></td>
+                </tr>
+
+                <tr>
+                    <th>영업시작</th>
+                    <td><input type="datetime-local" name="start_time" id="start_time"></td>
+                </tr>
+                <tr>
+                    <th>영업종료</th>
+                    <td><input type="datetime-local" name="end_time" id="end_time"></td>
+                </tr>
+                <tr>
+                    <th>가게 설명</th>
+                    <td><textarea type="text" name="description" id="description" cols="30" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <th>썸네일 사진</th>
+                    <td><input type="file" name="thumbnail" id="thumbnail"></td>
+                </tr>
+            </table>
           <button type="submit" id="restaurant_registration">레스토랑등록</button>
         </form>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
-<!--<script>-->
-<!--    const formData = new FormData();-->
-
-<!--    $("#restaurant_registration").click(function () {-->
-
-<!--        const name = $("#name").val();-->
-<!--        const address = $("#address").val();-->
-<!--        const business_number = $("#business_number").val();-->
-<!--        const phone_number = $("#phone_number").val();-->
-<!--        const duplicate_reservation = $("#duplicate_reservation").val();-->
-<!--        const category = $("#category").val();-->
-<!--        const start_time = $("#start_time").val();-->
-<!--        const end_time = $("#end_time").val();-->
-<!--        const description = $("#description").val();-->
-<!--        const thumbnail = $("#thumbnail")[0].files[0];-->
-
-<!--            formData.append("name", name);-->
-<!--            formData.append("address", address);-->
-<!--            formData.append("business_number", business_number);-->
-<!--            formData.append("phone_number", phone_number);-->
-<!--            formData.append("duplicate_reservation", duplicate_reservation);-->
-<!--            formData.append("category", category);-->
-<!--            formData.append("start_time", start_time);-->
-<!--            formData.append("end_time", end_time);-->
-<!--            formData.append("description", description);-->
-<!--            formData.append("thumbnail", thumbnail);-->
-
-
-<!--        $.ajax({-->
-<!--            url: "/restaurant/save",-->
-<!--            type: "POST",-->
-<!--            data: formData,-->
-<!--            contentType: false,-->
-<!--            // beforeSend : function(xhr){-->
-<!--            //     xhr.setRequestHeader(header, token);-->
-<!--            // },-->
-<!--            processData : false,-->
-<!--            success: function(data){-->
-<!--                alert("등록되었습니다.");-->
-<!--                $(location).attr('href','/');-->
-<!--            },-->
-<!--            error: function(){-->
-<!--                alert("err");-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-
 </html>
