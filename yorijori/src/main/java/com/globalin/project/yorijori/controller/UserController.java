@@ -47,7 +47,7 @@ public class UserController {
             return "redirect:/";
         } else {
             System.out.println("로그인 실패");
-            return null;
+            throw new RuntimeException("로그인 실패");
         }
     }
 
@@ -66,7 +66,8 @@ public class UserController {
     @GetMapping("/myPage")
     public String userInfo(HttpSession session, Model model) {
         if (session.getAttribute("username") == null)
-            return "user/sign";
+            throw new RuntimeException("로그인 정보가 없습니다");
+
         User user = userService.findByUsername((String) session.getAttribute("username"));
         List<Reservation> reservationList = user.getReservations();
         List<ReservationResponse> reservationResponseList = new ArrayList<>();
@@ -92,14 +93,14 @@ public class UserController {
     @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage(HttpSession session, Model model) {
         if (session.getAttribute("username") == null)
-            return "user/sign";
+            throw new RuntimeException("로그인 정보가 없습니다");
         UserResponse userResponse = userService.info((String) session.getAttribute("username"));
         model.addAttribute("userInfo", userResponse);
         return "user/modify";
     }
 
     @PutMapping("/modify") // 수정버튼 누르고 작동하는 거
-    public String modify(HttpSession session, @RequestBody UserModifyRequest userModifyRequest) {
+    public String modify(@RequestBody UserModifyRequest userModifyRequest) {
 
         userService.userModify(userModifyRequest);
         return "redirect:/";
@@ -117,7 +118,7 @@ public class UserController {
     public String goToCheckPassword(HttpSession session,
                                     Model model) {
         if (session.getAttribute("username") == null)
-            return "user/sign";
+            throw new RuntimeException("로그인 정보가 없습니다");
 
         return "user/checkPassword";
     }
