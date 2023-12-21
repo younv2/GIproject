@@ -13,43 +13,55 @@
             <ul>
                 <li><a href="/user/myPage">마이 페이지</a> </li>
                 <li><a href="/user/modify"> 회원 정보 수정</a></li>
-                <li><a onclick="test()">관리자 등록</a></li>
+                <li><a onclick="getManager()">관리자 등록</a></li>
                 <li><a href="/user/checkPassword">회원 탈퇴</a></li>
             </ul>
         </div>
         <div class="v_line"></div>
         <div class = "main_container">
-            <ul>
-                <li>아이디 <span th:text="${userInfo.username}"> </span></li>
-                <li>이름 <span th:text="${userInfo.name}"></span></li>
-                <li>닉네임 <span th:text="${userInfo.nickname}"></span></li>
-                <li>이메일 <span th:text="${userInfo.email}"></span></li>
-                <li>전화번호 <span th:text="${userInfo.phone_number}"></span></li>
-            </ul>
-            <h3>예약정보</h3>
-            <ul th:each="reservation: ${reservationList}">
-                <li th:text="${reservation.name}"></li>
-                <li th:text="${reservation.reservation_time}"></li>
-            </ul>
 
+            <h3>My Info</h3>
+            <div class=middle>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td><span th:text="${userInfo.username}"> </span></td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td><span th:text="${userInfo.name}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>닉네임</th>
+                        <td><span th:text="${userInfo.nickname}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><span th:text="${userInfo.email}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td><span th:text="${userInfo.phone_number}"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <h3>예약정보</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">가게 이름</th>
+                    <th scope="col">예약 시간 </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reservation: ${reservationList}">
+                    <td class="noBorder" th:text="${reservation.name}"></td>
+                    <td class="noBorder" th:text="${reservation.reservation_time}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
-<script>
-    function test()
-    {
-        $.ajax({
-            url: "/user/manager",
-            type: "PUT",
-            success: function(data){
-                alert("관리자 권한을 받았습니다.");
-                $(location).attr('href','/');
-            },
-            error: function(){
-                alert("err");
-            }
-        });
-    }
-</script>
 </html>

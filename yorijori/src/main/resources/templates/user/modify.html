@@ -13,21 +13,50 @@
         <ul>
             <li><a href="/user/myPage">마이 페이지</a> </li>
             <li><a href="/user/modify"> 회원 정보 수정</a></li>
+            <li><a onclick="getManager()">관리자 등록</a></li>
             <li><a href="/user/checkPassword">회원 탈퇴</a></li>
         </ul>
     </div>
     <div class="v_line"></div>
     <div class = "main_container">
-        <ul>
-            <li><input type="text" name="" id="username" disabled="disabled" th:value="${userInfo.username}">아이디 <span></span></li>
-            <li><input type="text" name="" id="name" disabled="disabled" th:value="${userInfo.name}">이름 <span></span></li>
-            <li><input type="text" name="" id="nickname" th:value="${userInfo.nickname}">닉네임 <span></span></li>
-            <li><input type="password" name="" id="current_pass">현재 비밀번호 <span></span></li>
-            <li><input type="password" name="" id="new_pass">새 비밀번호 <span></span></li>
-            <li><input type="password" name="" id="check_pass">비밀번호 확인<span></span></li>
-            <li><input type="text" name="" id="email" th:value="${userInfo.email}">이메일 <span></span></li>
-            <li><input type="text" name="" id="phone_number" th:value="${userInfo.phone_number}">전화번호 <span></span></li>
-        </ul>
+        <h3>회원 정보 수정</h3>
+        <div class=middle>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td><input type="text" class="disabled" name="" id="username" disabled="disabled" th:value="${userInfo.username}"></td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" class="disabled" name="" id="name" disabled="disabled" th:value="${userInfo.name}"></td>
+                </tr>
+                <tr>
+                    <th>닉네임</th>
+                    <td><input type="text" name="" id="nickname" th:value="${userInfo.nickname}"></td>
+                </tr>
+                <tr>
+                    <th>현재 비밀번호</th>
+                    <td><input type="password" name="" id="current_pass"></td>
+                </tr>
+                <tr>
+                    <th>새 비밀번호</th>
+                    <td><input type="password" name="" id="new_pass"></td>
+                </tr>
+                <tr>
+                    <th>비밀번호 확인</th>
+                    <td><input type="password" name="" id="check_pass"></td>
+                </tr>
+
+                <tr>
+                    <th>Email</th>
+                    <td><input type="text" name="" id="email" th:value="${userInfo.email}"></td>
+                </tr>
+                <tr>
+                    <th>전화번호</th>
+                    <td><input type="text" name="" id="phone_number" th:value="${userInfo.phone_number}"></td>
+                </tr>
+            </table>
+        </div>
         <button id="submit">회원 정보 수정</button>
     </div>
 </div>
@@ -40,7 +69,14 @@
             $("#check_pass").css("border-color", "red");
         }
         else
-            $("#check_pass").css("border", "none");
+        {
+            $("#check_pass").css("border-left-width","0");
+            $("#check_pass").css("border-right-width","0");
+            $("#check_pass").css("border-top-width","0");
+            $("#check_pass").css("border-bottom-width","2px");
+            $("#check_pass").css("border-color", "#FFAA00");
+            $("#check_pass").css("border-style", "solid");
+        }
     });
     $("#submit").click(function () {
         if(submitCheck==false)

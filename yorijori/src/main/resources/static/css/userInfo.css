@@ -5,9 +5,20 @@ ul > li {
 div
 {
     display: flex;
+    justify-content: center;
 }
+
 .main_container {
     width: 80%;
+    display: block;
+    margin : auto;
+
+}
+.main_container > h3 {
+    margin-left: 40px;
+}
+.main_container .reservation_info > li {
+    display: inline;
 }
 .sub_container >ul > li
 {
@@ -22,4 +33,62 @@ div
     border-left : thin solid #dddddd;
 
     height : 60vh;
+}
+
+
+table {
+    margin: auto;
+    width : 80%;
+    border-collapse: collapse;
+    font-weight: bold;
+}
+th, td {
+    padding: 20px;
+    border-style: solid;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width:1px;
+    border-bottom-width:1px;
+    border-color: #DDDDDD;
+}
+th {
+    background-color: #FFAA00;
+    color: white;
+}
+td {
+    background-color: #FFFFFF;
+    color: black;
+}
+.middle th {
+    width: 25%;
+}
+.noBorder {
+    border:none !important;
+}
+input {
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:2px;
+    border-color: #FFAA00;
+    font-weight: bold;
+}
+input:focus {
+    outline: none;
+}
+input.disabled {
+    border: none;
+}
+button {
+    background-color: white;
+    border : 2px solid #FFAA00;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 20px auto;
+    display: block;
+    padding: 10px;
+}
+button:hover {
+    background-color: #FFAA00;
+    color: white;
 }

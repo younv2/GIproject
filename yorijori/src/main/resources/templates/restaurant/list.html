@@ -16,7 +16,7 @@
     </div>
     <div th:each="restaurant: ${restaurantList}">
         <a th:href="@{/restaurant/details/{rno}(rno = ${restaurant.rno})}">
-        <span th:text="${restaurant.thumbnail}"></span>
+        <img th:src="${restaurant.thumbnail}" th:alt="${restaurant.thumbnail}">
         <span th:text="${restaurant.name}"></span>
         <span th:text="${restaurant.description}"></span>
         <span th:text="${restaurant.category}"></span>
