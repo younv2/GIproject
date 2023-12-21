@@ -32,7 +32,6 @@ public class RestaurantController {
     private final CommentService commentService;
     private final UserService userService;
 
-
     @GetMapping("/list/category")
     public String restaurantListPage(Model model, @RequestParam Category category) {
         System.out.println(category);
@@ -47,6 +46,21 @@ public class RestaurantController {
         List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(name);
         model.addAttribute("restaurantList", RestaurantListResponse);
         return "restaurant/list";
+    }
+
+    @GetMapping("/test/list") // 확인 후 바꿔야함
+    public String listPage(Model model,
+                           @RequestParam(required = false) String keyword,
+                           @RequestParam(required = false) Category category) {
+        if(keyword != null && category.name().isEmpty()) {
+            List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(keyword);
+            model.addAttribute("restaurantList", RestaurantListResponse);
+        } else {
+            List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
+            model.addAttribute("restaurantList", restaurantListResponse);
+        }
+
+        return  "restaurant/list";
     }
 
     @GetMapping("details/{rno}")
@@ -93,7 +107,7 @@ public class RestaurantController {
         restaurantService.restaurantUpdate(rno, restaurantRegistrationRequest);
         return "redirect:/restaurant/details/"+rno;
     }
-    
+
     //삭제
     @DeleteMapping ("/delete/{rno}")
     public String deletePage(@PathVariable("rno") Long rno) {
