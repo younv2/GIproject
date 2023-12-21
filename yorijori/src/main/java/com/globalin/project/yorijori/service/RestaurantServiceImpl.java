@@ -24,10 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -41,13 +38,12 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
         if (!thumbnail.isEmpty()) {
 
-                String uploadDir = "C:/thumbnail";
-                //String uploadDir = "src/main/resources/static/thumbnail";
+                String uploadDir = "/img";
 
                 String originalFileName = thumbnail.getOriginalFilename();
+                String fileName = UUID.randomUUID() + originalFileName;
 
-                String filePath = uploadDir + "/" + originalFileName;
-                //String filePathForPrj = prjUploadDir +  "/" + originalFileName;
+                String filePath = uploadDir + "/" + fileName;
 
                 restaurantEntity.setThumbnail(filePath);
 
