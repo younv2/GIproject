@@ -26,11 +26,11 @@ public class CommentController {
     public String register(HttpServletRequest request, HttpSession session, CommentRequest commentRequest) {
         String referer = request.getHeader("Referer");
         if (session.getAttribute("username") == null)
-            return "redirect:" + referer;
+            throw new RuntimeException("로그인 정보가 없습니다");
 
         commentRequest.setUser(userService.findByUsername((String) session.getAttribute("username")));
         commentRequest.setRestaurant(restaurantService.findById(commentRequest.getRno()));
-        
+
         commentService.commentRegister(commentRequest);
 
         return "redirect:" + referer;
