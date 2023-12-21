@@ -30,7 +30,7 @@ import java.util.List;
 public class RestaurantController {
     private final RestaurantService restaurantService;
     private final CommentService commentService;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
 
     @GetMapping("/list/category")
@@ -73,7 +73,7 @@ public class RestaurantController {
         System.out.println("1");
         String userName = (String)session.getAttribute("username");
 
-        User user = userRepository.findByUsername(userName);
+        User user = userService.findByUsername(userName);
         restaurantService.restaurantRegistration(user,restaurantRegistrationRequest, thumbnail);
         return "redirect:/";
     }
