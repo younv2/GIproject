@@ -8,21 +8,22 @@
 <body>
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <h2>Restaurant List Page</h2>
-    <div>
-        <span>썸네일</span>
-        <span>가게이름</span>
-        <span>상세</span>
-        <span>카테고리</span>
+    <!--검색-->
+    <div class = "main_container">
+        <form action="/restaurant/list/name" method="get">
+            <input type="text" name="name" class="search"><br>
+        </form>
     </div>
-    <div th:each="restaurant: ${restaurantList}">
-        <a th:href="@{/restaurant/details/{rno}(rno = ${restaurant.rno})}">
-        <img th:src="${restaurant.thumbnail}" th:alt="${restaurant.thumbnail}">
-        <span th:text="${restaurant.name}"></span>
-        <span th:text="${restaurant.description}"></span>
-        <span th:text="${restaurant.category}"></span>
-        </a>
-    </div>
+<a th:each="restaurant: ${restaurantList}" th:href="@{/restaurant/details/{rno}(rno = ${restaurant.rno})}">
+    <div  class="restaurant_list_container">
 
+        <img class="image" th:src="${restaurant.thumbnail}" th:alt="${restaurant.thumbnail}">
+        <span class="restaurant_name" th:text="${restaurant.name}"></span>
+        <span class="restaurant_description" th:text="${restaurant.description}"></span>
+        <!--<span th:text="${restaurant.category}"></span>-->
+
+    </div>
+</a>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </body>
 <script>
