@@ -52,6 +52,9 @@ public class RestaurantController {
     public String listPage(Model model,
                            @RequestParam(required = false) String keyword,
                            @RequestParam(required = false) Category category) {
+
+        if(keyword == null && category == null) throw new RuntimeException("검색어와 카테고리를 선택해주세요");
+
         if (keyword != null && category.name().isEmpty()) {
             List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(keyword);
             model.addAttribute("restaurantList", RestaurantListResponse);
@@ -77,7 +80,7 @@ public class RestaurantController {
     @GetMapping("/register")
     public String registerPage(HttpSession session) {
         if (session.getAttribute("username") == null)
-            return "/user/sign";
+            throw new RuntimeException("로그인 정보가 없습니다");
         return "restaurant/register";
     }
 
@@ -95,7 +98,7 @@ public class RestaurantController {
     @GetMapping("/modify/{rno}")
     public String modifyPage(@PathVariable Long rno, Model model, HttpSession session) {
         if (session.getAttribute("username") == null)
-            return "/user/sign";
+            throw new RuntimeException("로그인 정보가 없습니다");
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
         model.addAttribute("restaurantModify", restaurantDetailResponse);
         return "restaurant/modify";
