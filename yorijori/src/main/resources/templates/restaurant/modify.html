@@ -18,10 +18,9 @@
                 <th>주소</th>
                 <td><input type="text" name="address" id="address" th:value="${restaurantModify.address}"></td>
             </tr>
-            <!--사업자 번호 및 테이블 수 관련 데이터가 없음, Response 및 프론트 추가 작업 필요-->
             <tr>
                 <th>사업자번호</th>
-                <td><input type="text" name="business_number" id="business_number"></td>
+                <td><input type="text" name="business_number" id="business_number" th:value="${restaurantModify.business_number}" disabled="disabled"></td>
             </tr>
             <tr>
                 <th>가게번호</th>
@@ -29,7 +28,7 @@
             </tr>
             <tr>
                 <th>테이블 수</th>
-                <td><input type="text" name="duplicate_reservation" id="duplicate_reservation"></td>
+                <td><input type="text" name="duplicate_reservation" id="duplicate_reservation" th:value="${restaurantModify.duplicate_reservation}"></td>
             </tr>
             <tr>
                 <th>카테고리 선택</th>
@@ -44,16 +43,17 @@
 
             <tr>
                 <th>영업시작</th>
-                <td><input type="text" name="start_time" id="start_time" th:value="${restaurantModify.start_time}"></td>
+                <td><input type="time" name="start_time" id="start_time" th:value="${restaurantModify.start_time}"></td>
             </tr>
             <tr>
                 <th>영업종료</th>
-                <td><input type="text" name="end_time" id="end_time" th:value="${restaurantModify.end_time}"></td>
+                <td><input type="time" name="end_time" id="end_time" th:value="${restaurantModify.end_time}"></td>
             </tr>
             <tr>
                 <th>가게 설명</th>
                 <td><textarea name="description" id="description" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea></td>
             </tr>
+            <!--가게 썸네일 수정하기 위해서는 form으로 작업해야 할 것으로 보이며, 사진 파일을 어떻게 받아야 할지에 대한 논의가 필요할 것으로 보임-->
             <tr>
                 <th>썸네일 사진</th>
                 <td><input type="file" name="thumbnail" id="thumbnail" th:value="${restaurantModify.thumbnail}"></td>

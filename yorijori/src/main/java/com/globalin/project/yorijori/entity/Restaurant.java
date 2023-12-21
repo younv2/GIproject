@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.function.LongBinaryOperator;
 
@@ -33,9 +34,9 @@ public class Restaurant {
     private LocalDateTime updated_at;
     private String thumbnail;
     private String thumbnail_path;
-    private LocalDateTime start_time;
-    private LocalDateTime end_time;
-    private String duplicate_reservation;
+    private LocalTime start_time;
+    private LocalTime end_time;
+    private int duplicate_reservation;
 
     @OneToOne
     private User user;

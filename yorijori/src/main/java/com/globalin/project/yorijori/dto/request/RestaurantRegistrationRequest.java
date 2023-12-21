@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -23,11 +24,11 @@ public class RestaurantRegistrationRequest {
     private String phone_number;
     private Category category;
     private String description;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime start_time;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime end_time;
-    private String duplicate_reservation;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime start_time;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime end_time;
+    private int duplicate_reservation;
 
     public static RestaurantRegistrationRequest toRestaurantDTO(Restaurant restaurantEntity){
         RestaurantRegistrationRequest restaurantDTO = new RestaurantRegistrationRequest();

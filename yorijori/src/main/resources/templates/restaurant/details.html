@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/userInfo.css">
+    <link rel="stylesheet" href="css/userInfo.css">
     <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
     <title>details</title>
 </head>
@@ -10,7 +10,7 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <h2 th:text="${detail.name}"></h2>
     <div class="detail_container">
-    <div class="image_box" style="width: 300px; height: 300px;">
+    <div class="image_box" style="width: 450px; height: 600px;">
         <img class="image" th:src="${detail.thumbnail}" th:alt="${detail.thumbnail}">
     </div>
     <ul>
