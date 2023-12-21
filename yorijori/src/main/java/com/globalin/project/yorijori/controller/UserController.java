@@ -42,6 +42,7 @@ public class UserController {
             System.out.println(role);
             session.setAttribute("role", role.name());
             session.setAttribute("username", username);
+//            session.setAttribute("user", userService.info(username));  세션 저장 방식 변경 검토
             System.out.println("로그인 완료");
             return "redirect:/";
         } else {
