@@ -72,14 +72,47 @@ body {
 {
     cursor: pointer;
 }
-.restaurant_list_container {
+/* --------------------------레스토랑 리스트-------------------------------------------- */
+.restaurant_list_container_a {
+    width: fit-content;
+    margin: auto;
+    height : 200px;
+    display: block;
     width: 80%;
+    min-width: 600px;
+}
+.restaurant_list_container {
+    position: relative;
     margin: auto;
     height : 200px;
     border: 1px solid orange;
     border-radius: 30px;
     box-shadow: black inset;
     margin-bottom: 10px;
+}
+.restaurant_list_container > .image {
+    position: absolute;
+    top : 50%;
+    width: 160px;
+    height : 160px;
+    left: 2%;
+    line-height: 160px;
+    vertical-align:middle;
+    margin-top: -80px;
+}
+.restaurant_list_container > .restaurant_name {
+    position: absolute;
+    top : 5%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    left: 200px;
+    color: black;
+}
+.restaurant_list_container > .restaurant_description {
+    position: absolute;
+    top : 28%;
+    font-size: 1rem;
+    left: 200px;
 }
 .comment_register_box {
     margin: auto;
