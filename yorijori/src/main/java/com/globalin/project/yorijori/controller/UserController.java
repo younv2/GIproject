@@ -27,7 +27,6 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final ReservationService reservationService;
 
     @GetMapping("/sign") // x
     public String signPage() {
@@ -84,7 +83,7 @@ public class UserController {
 
     @PutMapping("/manager")
     @ResponseBody
-    public void setManager(HttpServletRequest servletRequest, HttpSession session) {
+    public void setManager(HttpSession session) {
         userService.userModify(Role.MANAGER, (String) session.getAttribute("username"));
         session.setAttribute("role", Role.MANAGER.name());
     }
