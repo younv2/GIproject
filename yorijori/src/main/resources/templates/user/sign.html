@@ -39,7 +39,6 @@
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <a href="#" class="btn mt-4" id="login">submit</a>
-                                            <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
                                 </div>
                               </div>
                             </div>
@@ -48,12 +47,12 @@
                             <div class="section text-center">
                               <h4 class="mb-4 pb-3">Sign Up</h4>
                               <div class="form-group">
-                                <input type="text" name="join_username" class="form-style" placeholder="Your ID" id="join_username" autocomplete="off">
+                                <input type="text" name="join_username" class="form-style" placeholder="ID" id="join_username" autocomplete="off">
                                 <i class="input-icon uil uil-user"></i>
                               </div>
-                                <button type="button" id="id_check">중복확인</button>
+                                <p id="id_check_text"></p>
                               <div class="form-group mt-2">
-                                <input type="password" name="join_pass" class="form-style" placeholder="Your Password" id="join_pass" autocomplete="off">
+                                <input type="password" name="join_pass" class="form-style" placeholder="Password" id="join_pass" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <div class="form-group mt-2">
@@ -61,19 +60,20 @@
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <div class="form-group mt-2">
-                                <input type="text" name="join_name" class="form-style" placeholder="Your Name" id="join_name" autocomplete="off">
+                                <input type="text" name="join_name" class="form-style" placeholder="Name" id="join_name" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <div class="form-group mt-2">
-                                <input type="text" name="join_nickname" class="form-style" placeholder="Your Nickname" id="join_nickname" autocomplete="off">
+                                <input type="text" name="join_nickname" class="form-style" placeholder="Nickname" id="join_nickname" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <div class="form-group mt-2">
-                                <input type="email" name="join_email" class="form-style" placeholder="Your Email" id="join_email" autocomplete="off">
+                                <input type="email" name="join_email" class="form-style" placeholder="Email" id="join_email" autocomplete="off">
                                 <i class="input-icon uil uil-at"></i>
-                              </div>  
+                              </div>
+                                <p id="email_check_text"></p>
                               <div class="form-group mt-2">
-                                <input type="text" name="join_phone" class="form-style" placeholder="Your PhoneNumber" id="join_phone" autocomplete="off">
+                                <input type="text" name="join_phone" class="form-style" placeholder="PhoneNumber" id="join_phone" autocomplete="off">
                                 <i class="input-icon uil uil-lock-alt"></i>
                               </div>
                               <a href="#" class="btn mt-4" id="join">submit</a>
@@ -96,7 +96,16 @@
 </body>
 <script>
     let submitCheck = false;
+    let emailCheck = false;
     $("#join_checkpass").blur(function () {
+        if($("#join_checkpass").val() != $("#join_pass").val()) {
+            $("#join_checkpass").css("border", "2px solid");
+            $("#join_checkpass").css("border-color", "red");
+        }
+        else
+            $("#join_checkpass").css("border", "none");
+    });
+    $("#join_pass").blur(function () {
         if($("#join_checkpass").val() != $("#join_pass").val()) {
             $("#join_checkpass").css("border", "2px solid");
             $("#join_checkpass").css("border-color", "red");
@@ -115,6 +124,12 @@
           alert("비밀번호가 맞지 않습니다. 다시 확인해주세요");
           return;
       }
+      if(emailCheck == false)
+      {
+          alert("이메일을 형식에 맞춰 기재해주세요");
+          return;
+      }
+
 
       const username = $("#join_username").val();
       const password = $("#join_pass").val();
@@ -168,25 +183,50 @@
       });
   });
 
-    $("#id_check").click(function() {
-        let username = $('#join_username').val();
-
+    $("#join_username").blur(function() {
+        let username = $('#join_username').val().trim();
+        let idCheckText = $('#id_check_text');
         $.ajax({
             type: "get",
             url: "/user/checkid?username=" + username
         }).done((res) => {
             console.log(res);
-            if (res == true) {
-                alert("사용할 수 있는 아이디입니다.");
+            if(username=="") {
+                idCheckText.text('아이디를 입력해주세요.');
+                idCheckText.css('color','red');
+                submitCheck = false;
+            } else if (res == true) {
+                idCheckText.text('사용할 수 있는 아이디입니다.');
+                idCheckText.css('color','green');
                 submitCheck = true; // 중복 체크 완료
             } else {
-                alert("이미 사용중인 아이디입니다.");
+                idCheckText.text('이미 사용중인 아이디입니다.');
+                idCheckText.css('color','red');
                 submitCheck = false;
             }
 
         }).fail((err) => {
             console.log('상태코드 200밖에 없어서 실행 안됨')
         });
+    });
+    $("#join_email").blur(function() {
+        var regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/;
+        let email = $('#join_email').val().trim();
+        let emailCheckText = $('#email_check_text');
+
+        if(email=="") {
+            emailCheckText.text('이메일을 입력해주세요.');
+            emailCheckText.css('color','red');
+            emailCheck = false;
+        } else if (!regExp.test(email)) {
+            emailCheckText.text('이메일 형식이 아닙니다.');
+            emailCheckText.css('color','red');
+            emailCheck = false;
+        } else {
+            emailCheckText.text('사용 가능한 이메일입니다.');
+            emailCheckText.css('color','green');
+            emailCheck = true;
+        }
     });
 </script>
 
