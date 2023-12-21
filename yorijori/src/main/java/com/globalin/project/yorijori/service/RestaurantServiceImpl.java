@@ -34,8 +34,6 @@ import java.util.Optional;
 public class RestaurantServiceImpl implements RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
-    private final UserRepository userRepository;
-
     @Override
     public void restaurantRegistration(User user, RestaurantRegistrationRequest req, MultipartFile thumbnail) throws IOException {
         //파일 첨부 여부에 따라 로직 분리
