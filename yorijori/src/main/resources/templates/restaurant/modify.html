@@ -1,74 +1,112 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>details</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<h2>Modify</h2>
-            <input type="hidden" name="rno" id="rno" th:value="${restaurantModify.rno}"><br>
-            <input type="text" name="name" id="name" th:value="${restaurantModify.name}"><br>
-            <input type="text" name="thumbnail" id="thumbnail" th:value="${restaurantModify.thumbnail}"> <br>
-            <input type="text" name="address" id="address" th:value="${restaurantModify.address}"> <br>
-            <label for="category" th:value="${restaurantModify.category}">카테고리 선택</label>
-            <select name="category" id="category">
-                <option value="KR">한식</option>
-                <option value="CN">중식</option>
-                <option value="JP">일식</option>
-                <option value="EU">양식</option>
-                <option value="BS">분식</option>
-            </select><br>
-            <textarea name="description" id="description" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea> <br>
-            <input type="text" name="phone_number"  id="phone_number" th:value="${restaurantModify.phone_number}">
-            <input type="text" name="start_time" id="start_time" th:value="${restaurantModify.start_time}">
-            <input type="text" name="end_time" id="end_time" th:value="${restaurantModify.end_time}">
-            <input type="submit" value="글수정" id="restaurant_update">
-<script>
-    $("#restaurant_update").click(function () {
+    <head>
+        <meta charset="UTF-8">
+        <title>details</title>
+        <th:block th:replace="fragments/commoncss :: commoncssFragment"></th:block>
+        <link rel="stylesheet" href="/css/userInfo.css">
+    </head>
+    <body>
+        <th:block th:replace="fragments/header :: headerFragment"></th:block>
+        <h2>Modify</h2>
+        <table>
+            <tr>
+                <th>가게이름</th>
+                <td><input type="text" name="name" id="name" th:value="${restaurantModify.name}"></td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td><input type="text" name="address" id="address" th:value="${restaurantModify.address}"></td>
+            </tr>
+            <!--사업자 번호 및 테이블 수 관련 데이터가 없음, Response 및 프론트 추가 작업 필요-->
+            <tr>
+                <th>사업자번호</th>
+                <td><input type="text" name="business_number" id="business_number"></td>
+            </tr>
+            <tr>
+                <th>가게번호</th>
+                <td><input type="text" name="phone_number"  id="phone_number" th:value="${restaurantModify.phone_number}"></td>
+            </tr>
+            <tr>
+                <th>테이블 수</th>
+                <td><input type="text" name="duplicate_reservation" id="duplicate_reservation"></td>
+            </tr>
+            <tr>
+                <th>카테고리 선택</th>
+                <td><select name="category" id="category" th:value="${restaurantModify.category}">
+                    <option value="KR">한식</option>
+                    <option value="CN">중식</option>
+                    <option value="JP">일식</option>
+                    <option value="EU">양식</option>
+                    <option value="BS">분식</option>
+                </select></td>
+            </tr>
 
-        const rno = $("#rno").val();
-        const name = $("#name").val();
-        const address = $("#address").val();
-        const business_number = $("#business_number").val();
-        const phone_number = $("#phone_number").val();
-        const duplicate_reservation = $("#duplicate_reservation").val();
-        const category = $("#category").val();
-        const start_time = $("#start_time").val();
-        const end_time = $("#end_time").val();
-        const description = $("#description").val();
-        const thumbnail = $("#thumbnail").val();
+            <tr>
+                <th>영업시작</th>
+                <td><input type="text" name="start_time" id="start_time" th:value="${restaurantModify.start_time}"></td>
+            </tr>
+            <tr>
+                <th>영업종료</th>
+                <td><input type="text" name="end_time" id="end_time" th:value="${restaurantModify.end_time}"></td>
+            </tr>
+            <tr>
+                <th>가게 설명</th>
+                <td><textarea name="description" id="description" cols="30" rows="10" th:text="${restaurantModify.description}"></textarea></td>
+            </tr>
+            <tr>
+                <th>썸네일 사진</th>
+                <td><input type="file" name="thumbnail" id="thumbnail" th:value="${restaurantModify.thumbnail}"></td>
+            </tr>
+        </table>
+        <input type="hidden" name="rno" id="rno" th:value="${restaurantModify.rno}">
+        <input type="submit" value="글수정" id="restaurant_update">
+        <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    </body>
+    <script>
+        $("#restaurant_update").click(function () {
 
-        const data = {
-            'rno' : rno,
-            'name': name,
-            'address': address,
-            'business_number': business_number,
-            'phone_number': phone_number,
-            'duplicate_reservation': duplicate_reservation,
-            'category': category,
-            'start_time': start_time,
-            'end_time': end_time,
-            'description': description,
-            'thumbnail' : thumbnail
-        }
-        $.ajax({
-            url: "/restaurant/update/"+rno,
-            type: "POST",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=UTF-8",
-            // beforeSend : function(xhr){
-            //     xhr.setRequestHeader(header, token);
-            // },
-            success: function(data){
-                alert("수정 되었습니다.");
-                $(location).attr('href','/');
-            },
-            error: function(){
-                alert("err");
+            const rno = $("#rno").val();
+            const name = $("#name").val();
+            const address = $("#address").val();
+            const business_number = $("#business_number").val();
+            const phone_number = $("#phone_number").val();
+            const duplicate_reservation = $("#duplicate_reservation").val();
+            const category = $("#category").val();
+            const start_time = $("#start_time").val();
+            const end_time = $("#end_time").val();
+            const description = $("#description").val();
+            const thumbnail = $("#thumbnail").val();
+
+            const data = {
+                'rno' : rno,
+                'name': name,
+                'address': address,
+                'business_number': business_number,
+                'phone_number': phone_number,
+                'duplicate_reservation': duplicate_reservation,
+                'category': category,
+                'start_time': start_time,
+                'end_time': end_time,
+                'description': description,
+                'thumbnail' : thumbnail
             }
+            $.ajax({
+                url: "/restaurant/update/"+rno,
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=UTF-8",
+                // beforeSend : function(xhr){
+                //     xhr.setRequestHeader(header, token);
+                // },
+                success: function(data){
+                    alert("수정 되었습니다.");
+                    $(location).attr('href','/');
+                },
+                error: function(){
+                    alert("err");
+                }
+            });
         });
-    });
-</script>
-</body>
+    </script>
 </html>
