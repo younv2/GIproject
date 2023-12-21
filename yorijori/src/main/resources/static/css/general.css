@@ -81,3 +81,19 @@ body {
     box-shadow: black inset;
     margin-bottom: 10px;
 }
+.comment_register_box {
+    margin: auto;
+    display: block;
+    outline: 1px solid black;
+}
+.detail_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: normal;
+}
+.detail_container > ul {
+    width: max-content;
+}
+.detail_container > p {
+    width: 100%;
+}
