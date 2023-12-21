@@ -27,9 +27,9 @@ public class ReservationController {
 
     @GetMapping("/{rno}")
     public String reservationPage(HttpSession session, @PathVariable Long rno, Model model) {
-        if(session.getAttribute("username") == null)
+        if (session.getAttribute("username") == null)
             return "user/sign";
-        else{
+        else {
             model.addAttribute("rno", rno);
             return "user/reservation";
         }
@@ -37,8 +37,8 @@ public class ReservationController {
 
 
     @PostMapping("/register/{rno}")
-    public String reservationResister(HttpSession session,@PathVariable Long rno,@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime reservation_time) {
-        String username = (String)session.getAttribute("username");
+    public String reservationResister(HttpSession session, @PathVariable Long rno, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime reservation_time) {
+        String username = (String) session.getAttribute("username");
         Restaurant restaurant = restaurantService.findById(rno);
         User user = userService.findByUsername(username);
 
@@ -48,14 +48,14 @@ public class ReservationController {
 
     }
 
-    
+
     // 삭제
 
     @DeleteMapping("/delete/{vno}")
-    public String reservationDelete(HttpSession session, @PathVariable("vno") Long vno){
-           String username = (String)session.getAttribute("username");
-            reservationService.reservationDelete(userService.findByUsername(username), vno);
-            return "redirect:/";
+    public String reservationDelete(HttpSession session, @PathVariable("vno") Long vno) {
+        String username = (String) session.getAttribute("username");
+        reservationService.reservationDelete(userService.findByUsername(username), vno);
+        return "redirect:/";
 
     }
 }

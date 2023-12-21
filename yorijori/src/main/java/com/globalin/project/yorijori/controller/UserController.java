@@ -28,6 +28,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final ReservationService reservationService;
+
     @GetMapping("/sign") // x
     public String signPage() {
         return "user/sign";
@@ -38,15 +39,13 @@ public class UserController {
                         HttpSession session) {
         String username = userService.login(request).getUsername();
         Role role = userService.login(request).getRole();
-        if(username!=null)
-        {
+        if (username != null) {
             System.out.println(role);
-            session.setAttribute("role",role.name());
+            session.setAttribute("role", role.name());
             session.setAttribute("username", username);
             System.out.println("로그인 완료");
             return "redirect:/";
-        }
-        else {
+        } else {
             System.out.println("로그인 실패");
             return null;
         }
@@ -66,57 +65,58 @@ public class UserController {
 
     @GetMapping("/myPage")
     public String userInfo(HttpSession session, Model model) {
-        if(session.getAttribute("username") == null)
+        if (session.getAttribute("username") == null)
             return "user/sign";
-        User user = userService.findByUsername((String)session.getAttribute("username"));
+        User user = userService.findByUsername((String) session.getAttribute("username"));
         List<Reservation> reservationList = user.getReservations();
         List<ReservationResponse> reservationResponseList = new ArrayList<>();
-        for (Reservation reservation: reservationList) {
+        for (Reservation reservation : reservationList) {
             ReservationResponse temp = new ReservationResponse();
             temp.setName(reservation.getRestaurant().getName());
             temp.setReservation_time(reservation.getReservation_time());
             reservationResponseList.add(temp);
         }
-        UserResponse userResponse = userService.info((String)session.getAttribute("username"));
-        model.addAttribute("userInfo",userResponse);
-        model.addAttribute("reservationList",reservationResponseList);
+        UserResponse userResponse = userService.info((String) session.getAttribute("username"));
+        model.addAttribute("userInfo", userResponse);
+        model.addAttribute("reservationList", reservationResponseList);
         return "user/userInfo";
     }
+
     @PutMapping("/manager")
     @ResponseBody
-    public void setManager(HttpServletRequest servletRequest,HttpSession session)
-    {
-        userService.userModify(Role.MANAGER,(String)session.getAttribute("username"));
-        session.setAttribute("role",Role.MANAGER.name());
+    public void setManager(HttpServletRequest servletRequest, HttpSession session) {
+        userService.userModify(Role.MANAGER, (String) session.getAttribute("username"));
+        session.setAttribute("role", Role.MANAGER.name());
     }
+
     @GetMapping("/modify") //페이지에 들어왔을 때
     public String modifyPage(HttpSession session, Model model) {
-        if(session.getAttribute("username") == null)
+        if (session.getAttribute("username") == null)
             return "user/sign";
-        UserResponse userResponse = userService.info((String)session.getAttribute("username"));
-        model.addAttribute("userInfo",userResponse);
+        UserResponse userResponse = userService.info((String) session.getAttribute("username"));
+        model.addAttribute("userInfo", userResponse);
         return "user/modify";
     }
 
     @PutMapping("/modify") // 수정버튼 누르고 작동하는 거
     public String modify(HttpSession session, @RequestBody UserModifyRequest userModifyRequest) {
 
-            userService.userModify(userModifyRequest);
-            return "redirect:/";
+        userService.userModify(userModifyRequest);
+        return "redirect:/";
     }
 
     @ResponseBody
     @GetMapping("/checkid")
-    public boolean checkId(@RequestParam String username)
-    {
+    public boolean checkId(@RequestParam String username) {
         System.out.println(username);
 
         return userService.checkId(username);
     }
+
     @GetMapping("/checkPassword")
     public String goToCheckPassword(HttpSession session,
-                                Model model) {
-        if(session.getAttribute("username") == null)
+                                    Model model) {
+        if (session.getAttribute("username") == null)
             return "user/sign";
 
         return "user/checkPassword";
@@ -134,15 +134,13 @@ public class UserController {
 
     @ResponseBody
     @DeleteMapping("/delete")
-    public boolean userDelete(@RequestBody LoginRequest loginRequest,HttpSession session){
+    public boolean userDelete(@RequestBody LoginRequest loginRequest, HttpSession session) {
         boolean flag = userService.userDelete(loginRequest);
-        if(flag)
-        {
+        if (flag) {
             System.out.println("통과");
             session.invalidate();
             return true;
-        }
-        else
+        } else
             return false;
     }
 }

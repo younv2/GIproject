@@ -38,10 +38,10 @@ public class RestaurantController {
         List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
         model.addAttribute("restaurantList", restaurantListResponse);
         return "restaurant/list";
-   }
+    }
 
     @GetMapping("/list/name")
-    public String restaurantListPage(Model model, @RequestParam String name){
+    public String restaurantListPage(Model model, @RequestParam String name) {
         System.out.println(name);
         List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(name);
         model.addAttribute("restaurantList", RestaurantListResponse);
@@ -52,7 +52,7 @@ public class RestaurantController {
     public String listPage(Model model,
                            @RequestParam(required = false) String keyword,
                            @RequestParam(required = false) Category category) {
-        if(keyword != null && category.name().isEmpty()) {
+        if (keyword != null && category.name().isEmpty()) {
             List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(keyword);
             model.addAttribute("restaurantList", RestaurantListResponse);
         } else {
@@ -60,41 +60,41 @@ public class RestaurantController {
             model.addAttribute("restaurantList", restaurantListResponse);
         }
 
-        return  "restaurant/list";
+        return "restaurant/list";
     }
 
     @GetMapping("details/{rno}")
-    public String details(@PathVariable("rno")Long rno, Model model) {
+    public String details(@PathVariable("rno") Long rno, Model model) {
         System.out.println(rno);
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
         List<CommentResponse> commentList = commentService.commentDetails(restaurantService.findById(rno));
-        model.addAttribute("detail",restaurantDetailResponse);
-        model.addAttribute("commentList",commentList);
+        model.addAttribute("detail", restaurantDetailResponse);
+        model.addAttribute("commentList", commentList);
         return "restaurant/details";
     }
-    
+
     // 수정
     @GetMapping("/register")
     public String registerPage(HttpSession session) {
-        if(session.getAttribute("username") == null)
+        if (session.getAttribute("username") == null)
             return "/user/sign";
         return "restaurant/register";
     }
 
     // 등록
-    @PostMapping(value ="/save", consumes = "multipart/form-data")
-    public String restaurantSave(HttpSession session,@RequestPart(required = false) MultipartFile thumbnail, RestaurantRegistrationRequest restaurantRegistrationRequest) throws IOException {
+    @PostMapping(value = "/save", consumes = "multipart/form-data")
+    public String restaurantSave(HttpSession session, @RequestPart(required = false) MultipartFile thumbnail, RestaurantRegistrationRequest restaurantRegistrationRequest) throws IOException {
         System.out.println("1");
-        String userName = (String)session.getAttribute("username");
+        String userName = (String) session.getAttribute("username");
 
         User user = userService.findByUsername(userName);
-        restaurantService.restaurantRegistration(user,restaurantRegistrationRequest, thumbnail);
+        restaurantService.restaurantRegistration(user, restaurantRegistrationRequest, thumbnail);
         return "redirect:/";
     }
 
     @GetMapping("/modify/{rno}")
-    public String modifyPage(@PathVariable Long rno, Model model,HttpSession session) {
-        if(session.getAttribute("username") == null)
+    public String modifyPage(@PathVariable Long rno, Model model, HttpSession session) {
+        if (session.getAttribute("username") == null)
             return "/user/sign";
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.restaurantDetail(rno);
         model.addAttribute("restaurantModify", restaurantDetailResponse);
@@ -102,14 +102,14 @@ public class RestaurantController {
     }
 
     @PutMapping("/update/{rno}")
-    public String updatePage(@PathVariable("rno") Long rno, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest){
+    public String updatePage(@PathVariable("rno") Long rno, @RequestBody RestaurantRegistrationRequest restaurantRegistrationRequest) {
         System.out.println("rno:" + rno);
         restaurantService.restaurantUpdate(rno, restaurantRegistrationRequest);
-        return "redirect:/restaurant/details/"+rno;
+        return "redirect:/restaurant/details/" + rno;
     }
 
     //삭제
-    @DeleteMapping ("/delete/{rno}")
+    @DeleteMapping("/delete/{rno}")
     public String deletePage(@PathVariable("rno") Long rno) {
         //Long userId = (Long) session.getAttribute("1");
         restaurantService.deleteRestaurant(rno);
