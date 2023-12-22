@@ -51,8 +51,8 @@ public class RestaurantController {
     @GetMapping("/list") // 페이징 처리 해야함
     public String listPage(Model model,
                            @RequestParam(required = false) String keyword,
-                           @RequestParam(required = false) Category category,
-                           @RequestParam(required = false /* 나중에 빼야함 */) int page) {
+                           @RequestParam(required = false) Category category
+                           /*@RequestParam(required = false ) int page*/) {
 
         if(keyword == null && category == null) throw new RuntimeException("검색어와 카테고리를 선택해주세요");
 
