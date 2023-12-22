@@ -52,7 +52,7 @@ public class RestaurantController {
     public String listPage(Model model,
                            @RequestParam(required = false) String keyword,
                            @RequestParam(required = false) Category category,
-                           @RequestParam int page) {
+                           @RequestParam(required = false /* 나중에 빼야함 */) int page) {
 
         if(keyword == null && category == null) throw new RuntimeException("검색어와 카테고리를 선택해주세요");
 
