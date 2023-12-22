@@ -27,6 +27,7 @@ import java.util.UUID;
 public class RestaurantServiceImpl implements RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
+
     @Override
     public void restaurantRegistration(User user, RestaurantRegistrationRequest req, MultipartFile thumbnail) throws IOException {
         //파일 첨부 여부에 따라 로직 분리
@@ -34,22 +35,22 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurantEntity = Restaurant.toSaveEntity(req);
         if (!thumbnail.isEmpty()) {
 
-                String uploadDir = "/img";
+            String uploadDir = "/img";
 
-                String originalFileName = thumbnail.getOriginalFilename();
-                String fileName = UUID.randomUUID() + originalFileName;
+            String originalFileName = thumbnail.getOriginalFilename();
+            String fileName = UUID.randomUUID() + originalFileName;
 
-                String filePath = uploadDir + "/" + fileName;
+            String filePath = uploadDir + "/" + fileName;
 
-                restaurantEntity.setThumbnail(filePath);
+            restaurantEntity.setThumbnail(filePath);
 
-                //파일 저장
-                File dest = new File(filePath);
+            //파일 저장
+            File dest = new File(filePath);
 
-                thumbnail.transferTo(dest);
-                //thumbnail.transferTo(dest);
+            thumbnail.transferTo(dest);
+            //thumbnail.transferTo(dest);
 
-        }else {
+        } else {
             throw new FileUploadException("업로드할 파일이 없습니다.");
         }
 
@@ -60,11 +61,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public RestaurantDetailResponse restaurantDetail(Long rno) {
         Optional<Restaurant> optionalRestaurantEntity = restaurantRepository.findById(rno);
-        if(optionalRestaurantEntity.isPresent()) {
+        if (optionalRestaurantEntity.isPresent()) {
             Restaurant restaurantEntity = optionalRestaurantEntity.get();
-            RestaurantDetailResponse restaurantDetailResponse = RestaurantDetailResponse.toRestaurantDetailResponse(restaurantEntity);
-            return restaurantDetailResponse;
-        }else{
+            return RestaurantDetailResponse.toRestaurantDetailResponse(restaurantEntity);
+        } else {
             return null;
         }
 
@@ -83,9 +83,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void restaurantUpdate(Long rno, RestaurantRegistrationRequest req) {
 
-            Restaurant restaurantEntity = Restaurant.toUpdateEntity(req);
-            restaurantEntity.setRno(rno);
-            restaurantRepository.save(restaurantEntity);
+        Restaurant restaurantEntity = Restaurant.toUpdateEntity(req);
+        restaurantEntity.setRno(rno);
+        restaurantRepository.save(restaurantEntity);
 
     }
 
@@ -131,6 +131,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant findByRestaurantName(String name) {
         return restaurantRepository.findByName(name);
     }
+
     @Override
     public Restaurant findById(Long id) {
 
@@ -139,11 +140,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<RestaurantListResponse> findByCategoryWithPaging(Category category, int page) {
-        Pageable pageable = PageRequest.of(page,3);
+        Pageable pageable = PageRequest.of(page, 3);
         List<Restaurant> restaurants = restaurantRepository.findByCategory(category, pageable);
         List<RestaurantListResponse> restaurantListResponses = new ArrayList<>();
-        for (Restaurant restaurant :restaurants)
-        {
+        for (Restaurant restaurant : restaurants) {
             restaurantListResponses.add(RestaurantListResponse.toRestaurantListResponse(restaurant));
         }
         return restaurantListResponses;
