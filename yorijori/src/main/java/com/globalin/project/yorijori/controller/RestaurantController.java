@@ -32,7 +32,7 @@ public class RestaurantController {
     private final CommentService commentService;
     private final UserService userService;
 
-    @GetMapping("/list/category")
+    @GetMapping("/test/list/category")
     public String restaurantListPage(Model model, @RequestParam Category category) {
         System.out.println(category);
         List<RestaurantListResponse> restaurantListResponse = restaurantService.findByCategory(category);
@@ -40,7 +40,7 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-    @GetMapping("/list/name")
+    @GetMapping("/test/list/name")
     public String restaurantListPage(Model model, @RequestParam String name) {
         System.out.println(name);
         List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(name);
@@ -48,10 +48,11 @@ public class RestaurantController {
         return "restaurant/list";
     }
 
-    @GetMapping("/test/list") // 확인 후 바꿔야함
+    @GetMapping("/list") // 페이징 처리 해야함
     public String listPage(Model model,
                            @RequestParam(required = false) String keyword,
-                           @RequestParam(required = false) Category category) {
+                           @RequestParam(required = false) Category category,
+                           @RequestParam int page) {
 
         if(keyword == null && category == null) throw new RuntimeException("검색어와 카테고리를 선택해주세요");
 
