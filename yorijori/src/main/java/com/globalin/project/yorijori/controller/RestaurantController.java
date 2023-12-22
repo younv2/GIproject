@@ -55,7 +55,7 @@ public class RestaurantController {
 
         if(keyword == null && category == null) throw new RuntimeException("검색어와 카테고리를 선택해주세요");
 
-        if (keyword != null && category.name().isEmpty()) {
+        if (keyword != null) {
             List<RestaurantListResponse> RestaurantListResponse = restaurantService.findByName(keyword);
             model.addAttribute("restaurantList", RestaurantListResponse);
         } else {
