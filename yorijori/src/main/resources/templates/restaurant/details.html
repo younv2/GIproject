@@ -10,17 +10,20 @@
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
     <h2 th:text="${detail.name}"></h2>
     <div class="detail_container">
-    <div class="image_box" style="width: 450px; height: 600px;">
-        <img class="image" th:src="${detail.thumbnail}" th:alt="${detail.thumbnail}">
+    <div class="image_box" style="width: 350px; height: 350px;">
+        <img class="image" th:src="${detail.thumbnail}" th:alt="${detail.thumbnail}" style="width: 350px; height: 350px;">
     </div>
-    <ul>
-        <li>주소 <span th:text="${detail.address}"></span></li>
-        <li>오픈 <span th:text="${detail.start_time}"></span></li>
-        <li>마감 <span th:text="${detail.end_time}"></span></li>
-        <form th:action="@{|/reservation/${detail.rno}|}" method="get">
-            <button type="submit">예약하기</button>
-        </form>
-    </ul>
+    <div>
+        <ul style="line-height: 3em;">
+            <li><b>주소</b> <span th:text="${detail.address}"></span></li>
+            <li><b>오픈 시간</b> <span th:text="${detail.start_time}"></span></li>
+            <li><b>마감 시간</b> <span th:text="${detail.end_time}"></span></li>
+            <form th:action="@{|/reservation/${detail.rno}|}" method="get">
+                <button type="submit">예약하기</button>
+            </form>
+        </ul>
+    </div>
+    <hr>
     <p th:text="${detail.description}"></p>
     </div>
 
@@ -35,20 +38,25 @@
         <option value="4">★★★★☆</option>
         <option value="5">★★★★★</option>
     </select><br>
-    <textarea name="review" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." th:unless="${#strings.isEmpty(session.username)}"></textarea>
-    <textarea name="review" id="" cols="30" rows="10" placeholder="로그인을 해주세요" th:if="${#strings.isEmpty(session.username)}" readonly="true"></textarea>
-    <button type="submit">등록</button>
+    <textarea style="width: 100%;" name="review" id="" cols="30" rows="10" placeholder="댓글을 입력해주세요." th:unless="${#strings.isEmpty(session.username)}"></textarea>
+    <textarea style="width: 100%;" name="review" id="" cols="30" rows="10" placeholder="로그인을 해주세요" th:if="${#strings.isEmpty(session.username)}" readonly="true"></textarea>
+    <button type="submit">댓글 등록</button>
     </div>
 </form>
 
-<div th:each="comment: ${commentList}">
+<div th:each="comment: ${commentList}" class="comment_box">
     <span style="font-weight: bold" th:text="${comment.nickname}"></span>
-    <span th:text="${comment.review}"></span>
-    <span th:text="${comment.rate}"></span>
-    <form action="/comment/delete" method="post">
+    <th:block th:each="num : ${#numbers.sequence(1,comment.rate)}">
+        <span th:text="'★'"></span>
+    </th:block>
+    <p>
+    <span style="font-size: 12px;" th:text="${comment.review}"></span>
+
+    </p>
+    <!--<form action="/comment/delete" method="post">
         <input type="hidden" name="cno" th:value="${comment.cno}">
-        <button type="submit">x</button>
-    </form>
+        &lt;!&ndash;<button type="submit">x</button>&ndash;&gt;
+    </form>-->
 
     <br>
 </div>

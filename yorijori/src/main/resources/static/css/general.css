@@ -117,7 +117,6 @@ body {
 .comment_register_box {
     margin: auto;
     display: block;
-    outline: 1px solid black;
 }
 .detail_container {
     display: flex;
@@ -129,4 +128,7 @@ body {
 }
 .detail_container > p {
     width: 100%;
+}
+.comment_box {
+    display: block;
 }
