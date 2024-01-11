@@ -38,18 +38,30 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void commentRegister(CommentRequest req) {
         Comment comment = new Comment();
-
+        comment = commentRepository.findByUser(req.getUser());
+        if(comment == null)
+            comment.setCreated_at(LocalDateTime.now());
         comment.setRate(req.getRate());
         comment.setReview(req.getReview());
         comment.setUser(req.getUser());
         comment.setRestaurant(req.getRestaurant());
-        comment.setCreated_at(LocalDateTime.now());
+
 
         commentRepository.save(comment);
     }
 
     @Override
-    public void commentDelete(UserResponse user, Long cno) {
+    public void commentDelete(String user, Long cno)
+    {
+        Comment comment = commentRepository.findById(cno).get();
 
+        if(!comment.getUser().getUsername().equals(user))
+        {
+            throw new RuntimeException("아이디가 맞지 않습니다");
+        }
+        else
+        {
+            commentRepository.delete(comment);
+        }
     }
 }

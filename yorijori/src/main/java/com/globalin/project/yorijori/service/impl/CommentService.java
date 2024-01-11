@@ -13,5 +13,5 @@ public interface CommentService {
     //댓글 및 평점 등록
     void commentRegister(CommentRequest req);
     //댓글 및 평점 삭제
-    void commentDelete(UserResponse user, Long cno);
+    void commentDelete(String user, Long cno);
 }

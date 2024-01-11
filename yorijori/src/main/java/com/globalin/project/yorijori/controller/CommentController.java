@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,9 +41,19 @@ public class CommentController {
 
     //삭제
     @PostMapping("/delete")
-    public String delete(HttpServletRequest request, HttpSession session, Long cno) {
-        session.getAttribute("username");
-        System.out.println(cno);
+    public String delete(HttpServletResponse response, HttpServletRequest request, HttpSession session, Long cno) throws IOException {
+
+        try {
+            commentService.commentDelete((String) session.getAttribute("username"), cno);
+        } catch (RuntimeException e)
+        {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('아이디가 맞지 않습니다');history.go(-1);</script>");
+            out.flush();
+            response.flushBuffer();
+            out.close();
+        }
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }

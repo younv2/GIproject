@@ -44,20 +44,18 @@
     </div>
 </form>
 
-<div th:each="comment: ${commentList}" class="comment_box">
+<div style="position: relative" th:each="comment: ${commentList}" class="comment_box">
     <span style="font-weight: bold" th:text="${comment.nickname}"></span>
     <th:block th:each="num : ${#numbers.sequence(1,comment.rate)}">
         <span th:text="'★'"></span>
     </th:block>
+    <form action="/comment/delete" method="post">
+        <input type="hidden" name="cno" th:value="${comment.cno}">
+        <button style="position:absolute; top:0px;right:10px;margin: 0 auto; padding: 2px;"  type="submit">x</button>
+    </form>
     <p>
     <span style="font-size: 12px;" th:text="${comment.review}"></span>
-
     </p>
-    <!--<form action="/comment/delete" method="post">
-        <input type="hidden" name="cno" th:value="${comment.cno}">
-        &lt;!&ndash;<button type="submit">x</button>&ndash;&gt;
-    </form>-->
-
     <br>
 </div>
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
