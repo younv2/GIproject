@@ -27,6 +27,70 @@ hr{
 body {
     margin: 0 10vw;
 }
+
+#cn {
+    background-image: url("../img/cn.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#cn:hover {
+    opacity: 1;
+}
+#eu {
+    background-image: url("../img/eu.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#eu:hover {
+    opacity: 1;
+}
+#kr {
+    background-image: url("../img/kr.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#kr:hover {
+    opacity: 1;
+}
+#jp {
+    background-image: url("../img/jp.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#jp:hover {
+    opacity: 1;
+}
+#bs {
+    background-image: url("../img/bs.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#bs:hover {
+    opacity: 1;
+}
+#ys {
+    background-image: url("../img/ys.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#ys:hover {
+    opacity: 1;
+}
+#cf {
+    background-image: url("../img/cf.png");
+    opacity: 0.5;
+    outline: 4px solid #FFAA00;
+    background-size: cover;
+}
+#cf:hover {
+    opacity: 1;
+}
 /*main*/
 .main_container  .search {
     background-image: url("../img/search.png");
@@ -76,7 +140,6 @@ body {
 .restaurant_list_container_a {
     width: fit-content;
     margin: auto;
-    height : 200px;
     display: block;
     width: 80%;
     min-width: 600px;
@@ -90,7 +153,8 @@ body {
     box-shadow: black inset;
     margin-bottom: 10px;
 }
-.restaurant_list_container > .image {
+
+.restaurant_list_container  .image {
     position: absolute;
     top : 50%;
     width: 160px;
@@ -100,7 +164,7 @@ body {
     vertical-align:middle;
     margin-top: -80px;
 }
-.restaurant_list_container > .restaurant_name {
+.restaurant_list_container  .restaurant_name {
     position: absolute;
     top : 5%;
     font-weight: bold;
@@ -108,7 +172,7 @@ body {
     left: 200px;
     color: black;
 }
-.restaurant_list_container > .restaurant_description {
+.restaurant_list_container  .restaurant_description {
     position: absolute;
     top : 28%;
     font-size: 1rem;

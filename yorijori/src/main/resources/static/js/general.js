@@ -21,3 +21,17 @@ function getManager()
         }
     });
 }
+function deleteRestaurant(rno)
+{
+    $.ajax({
+        url: "/restaurant/delete/" + rno,
+        type: "DELETE",
+        success: function(data){
+            alert("삭제 되었습니다");
+            $(location).attr('href','/');
+        },
+        error: function(){
+            alert("err");
+        }
+    });
+}

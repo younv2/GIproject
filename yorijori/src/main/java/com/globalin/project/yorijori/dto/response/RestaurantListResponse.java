@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @ToString
 @NoArgsConstructor //기본생성자
+@AllArgsConstructor
 
 public class RestaurantListResponse {
     private Long rno;
@@ -16,14 +17,8 @@ public class RestaurantListResponse {
     private String category;
     private String thumbnail;
     private String description;
-
-    public RestaurantListResponse(Long rno, String name, String category, String thumbnail, String description) {
-        this.rno = rno;
-        this.name = name;
-        this.category = category;
-        this.thumbnail = thumbnail;
-        this.description = description;
-    }
+    private String business_number;
+    private String address;
 
     public RestaurantListResponse(Long rno, String name, Category category, String thumbnail, String description) {
 
@@ -36,6 +31,8 @@ public class RestaurantListResponse {
         restaurantListResponse.setCategory(restaurantEntity.getCategory().name());
         restaurantListResponse.setThumbnail(restaurantEntity.getThumbnail());
         restaurantListResponse.setDescription(restaurantEntity.getDescription());
+        restaurantListResponse.setBusiness_number(restaurantEntity.getBusiness_number());
+        restaurantListResponse.setAddress(restaurantEntity.getAddress());
 
         return restaurantListResponse;
     }

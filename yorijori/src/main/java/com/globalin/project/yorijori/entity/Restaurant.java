@@ -38,7 +38,7 @@ public class Restaurant {
     private LocalTime end_time;
     private int duplicate_reservation;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)

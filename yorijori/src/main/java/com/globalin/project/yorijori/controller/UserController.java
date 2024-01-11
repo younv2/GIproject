@@ -5,8 +5,10 @@ import com.globalin.project.yorijori.dto.request.SignUpRequest;
 import com.globalin.project.yorijori.dto.request.UserModifyRequest;
 import com.globalin.project.yorijori.dto.response.CommentResponse;
 import com.globalin.project.yorijori.dto.response.ReservationResponse;
+import com.globalin.project.yorijori.dto.response.RestaurantListResponse;
 import com.globalin.project.yorijori.dto.response.UserResponse;
 import com.globalin.project.yorijori.entity.Reservation;
+import com.globalin.project.yorijori.entity.Restaurant;
 import com.globalin.project.yorijori.entity.Role;
 import com.globalin.project.yorijori.entity.User;
 import com.globalin.project.yorijori.service.impl.ReservationService;
@@ -42,7 +44,7 @@ public class UserController {
             System.out.println(role);
             session.setAttribute("role", role.name());
             session.setAttribute("username", username);
-//            session.setAttribute("user", userService.info(username));  세션 저장 방식 변경 검토
+            //session.setAttribute("user", userService.info(username));
             System.out.println("로그인 완료");
             return "redirect:/";
         } else {
@@ -81,6 +83,26 @@ public class UserController {
         model.addAttribute("userInfo", userResponse);
         model.addAttribute("reservationList", reservationResponseList);
         return "user/userInfo";
+    }
+    @GetMapping("/myRestaurant")
+    public String myRestaurant(HttpSession session, Model model) {
+        if (session.getAttribute("username") == null)
+            throw new RuntimeException("로그인 정보가 없습니다");
+
+        User user = userService.findByUsername((String) session.getAttribute("username"));
+        List<Restaurant> restaurantList = user.getRestaurants();
+        List<RestaurantListResponse> restaurantResponseList = new ArrayList<>();
+        for (Restaurant restaurant : restaurantList) {
+            RestaurantListResponse temp = new RestaurantListResponse();
+            temp.setRno(restaurant.getRno());
+            temp.setName(restaurant.getName());
+            temp.setThumbnail(restaurant.getThumbnail());
+            temp.setBusiness_number(restaurant.getBusiness_number());
+            temp.setAddress(restaurant.getAddress());
+            restaurantResponseList.add(temp);
+        }
+        model.addAttribute("restaurantList", restaurantResponseList);
+        return "user/myRestaurant";
     }
 
     @PutMapping("/manager")

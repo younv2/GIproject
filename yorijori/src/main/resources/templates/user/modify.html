@@ -15,6 +15,7 @@
             <li><a href="/user/modify"> 회원 정보 수정</a></li>
             <li><a onclick="getManager()">관리자 등록</a></li>
             <li><a href="/user/checkPassword">회원 탈퇴</a></li>
+            <li><a th:if="${#strings.equals(session.role,'MANAGER')}" href="/user/myRestaurant">내 가게</a></li>
         </ul>
     </div>
     <div class="v_line"></div>

@@ -35,6 +35,6 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Reservation> reservations;
 
-    @OneToOne
-    private Restaurant restaurant;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Restaurant> restaurants;
 }
